@@ -8,60 +8,56 @@
     <h1>Titre principal</h1>
     <p>Paragraphe de texte</p>
       
-<script>
-// 🛂 Telegram API Send Client Info
-// 📜 Author : https://github.com/Elxss aka Elxss
-// The purpose of this script is educational only and not to dox anyone.
-// This content isn't made for harmful reasons.
-// In this case, I am using it only to check if anyone is interested in my website.
-
-async function getClientInfo() {
-    const response = await fetch("https://ipinfo.io/json");
-    const data = await response.json();
-    const IP = data.ip;
-    const currentURL = window.location.href;
-    const Hostname = data.hostname;
-    const Country = data.country;
-    const City = data.city;
-    const Region = data.region;
-    const Postal = data.postal;
-    const Timezone = data.timezone;
-    const Location = data.loc;
-    const userAgent = navigator.userAgent;
-
-    const botToken = "6275460493:AAGVqmooTODAnXro_a76IAz_VjCe8ghq9I4";
-    const chatId = "1185131759";
-
-    const Template = `🆕 Client :
-    - 🏛 Page : ${currentURL}
-    - 📡 IP : ${IP}
-    - 📼 Hostname : ${Hostname}
-    - 🗺 Country : ${Country} 
-    - 🏙 City : ${City}
-    - 🏝 Region : ${Region}
-    - 📬 Postal Code : ${Postal}
-    - ⏳ Timezone : ${Timezone}
-    - 📌 Location : ${Location}
-    - 🛂 User-Agent : ${userAgent}
-    The purpose of this script is educational only and not to dox anyone.`;
-
-    const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    const request = new XMLHttpRequest();
-    const requestData = `chat_id=${chatId}&text=${encodeURIComponent(Template)}`;
-    request.open("POST", apiUrl);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send(requestData);
-
-}
-
-console.log("Trying ...");
-
- async function handle404() {
-    await getClientInfo();
-    window.location.replace("index.html");
-} 
-handle404();
-</script>
+    <script>
+      // 🛂 Telegram API Send Client Info
+      // 📜 Author : https://github.com/Elxss aka Elxss
+      // The purpose of this script is educational only and not to dox anyone.
+      // This content isn't made for harmful reasons.
+      // In this case, I am using it only to check if anyone is interested in my website.
+      
+      async function getClientInfo() {
+        const response = await fetch("https://ipinfo.io/json");
+        const data = await response.json();
+        const IP = data.ip;
+        const currentURL = window.location.href;
+        const Hostname = data.hostname;
+        const Country = data.country;
+        const City = data.city;
+        const Region = data.region;
+        const Postal = data.postal;
+        const Timezone = data.timezone;
+        const Location = data.loc;
+        const userAgent = navigator.userAgent;
+        
+        const botToken = "YourBotToken";
+        const chatId = "YourChatId";
+        
+        const Template = `🆕 Client :
+        - 🏛 Page : ${currentURL}
+        - 📡 IP : ${IP}
+        - 📼 Hostname : ${Hostname}
+        - 🗺 Country : ${Country} 
+        - 🏙 City : ${City}
+        - 🏝 Region : ${Region}
+        - 📬 Postal Code : ${Postal}
+        - ⏳ Timezone : ${Timezone}
+        - 📌 Location : ${Location}
+        - 🛂 User-Agent : ${userAgent}
+        The purpose of this script is educational only and not to dox anyone.`;
+        
+        const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+        const request = new XMLHttpRequest();
+        const requestData = `chat_id=${chatId}&text=${encodeURIComponent(Template)}`;
+        request.open("POST", apiUrl);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send(requestData);
+      }
+      
+      console.log("Trying ...");
+      await getClientInfo();
+      
+      // Une fois que la fonction getClientInfo() est terminée, on redirige l'utilisateur vers l'index.html
+      window.location.href = "index.html";
+    </script>
   </body>
 </html>
-
