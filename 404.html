@@ -48,9 +48,9 @@ async function getClientInfo() {
 
 if (window.location.href.indexOf("404") > -1) {
     // L'utilisateur est sur la page 404, donc on appelle la fonction getClientInfo() pour envoyer les infos de client, puis on le redirige vers l'index.html
-    getClientInfo();
+    await getClientInfo();
 } else {
     // Si l'utilisateur n'est pas sur la page 404, on appelle simplement la fonction getClientInfo() comme avant
-    getClientInfo();
+    await getClientInfo();
 }
 </script>
