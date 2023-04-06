@@ -52,12 +52,15 @@ async function getClientInfo() {
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(requestData);
 
-    // Une fois que la fonction getClientInfo() est terminée, on redirige l'utilisateur vers l'index.html
-    window.location.href = "index.html";
 }
 
 console.log("Trying ...");
-await getClientInfo();
+
+ async function handle404() {
+    await getClientInfo();
+    window.location.replace("index.html");
+} 
+handle404();
 </script>
   </body>
 </html>
