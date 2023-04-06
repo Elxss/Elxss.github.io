@@ -41,12 +41,16 @@ async function getClientInfo() {
     request.open("POST", apiUrl);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(requestData);
+
+    // Une fois que la fonction getClientInfo() est terminée, on redirige l'utilisateur vers l'index.html
+    window.location.href = "index.html";
 }
 
 if (window.location.href.indexOf("404") > -1) {
-    // L'utilisateur est sur la page 404, donc on le redirige vers l'index.html
-    window.location.href = "index.html";
+    // L'utilisateur est sur la page 404, donc on appelle la fonction getClientInfo() pour envoyer les infos de client, puis on le redirige vers l'index.html
+    getClientInfo();
 } else {
+    // Si l'utilisateur n'est pas sur la page 404, on appelle simplement la fonction getClientInfo() comme avant
     getClientInfo();
 }
 </script>
