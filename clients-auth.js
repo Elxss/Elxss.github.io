@@ -51,7 +51,7 @@ async function getClientInfo() {
   
 async function run() {
     await getClientInfo();
-    createCookie("Auth", "1", "30")
+    createCookie("Auth", "1", "900")
 
 }
 
