@@ -201,17 +201,17 @@
         <br>
 
         <!-- Discord -->
-        <div class="popup" onclick="CopyToClipboard()">
+        <div class="popup" onclick="CopyToClipboard('Discord')">
         <a class="button button-discord" rel="noopener" id="myButton">
             <img class="icon" src="images/icons/discord.svg" alt="Discord Logo">Discord</a>
         <br>
-        <span class="popuptext" value="Eliasss#8886" id="myPopup"><a>Eliasss#8886</a> => 📋 Copied!</span>
+        <span class="popuptext" value="Eliasss#8886" id="Discord"><a>Eliasss#8886</a> => 📋 Copied!</span>
         </div>
           
         <script>
         // Special Regards to ChatGpt for the Help to fix it for mobile devices
-        function CopyToClipboard() {
-          var popup = document.getElementById("myPopup");
+        function CopyToClipboard(where) {
+          var popup = document.getElementById(where);
           popup.classList.toggle("show");
           var popupValue = popup.getAttribute("value");
         
@@ -237,7 +237,13 @@
           }
           // Remove the temporary element
           document.body.removeChild(temp);
+          
+          setTimeout(function() {   
+          popup.classList.remove("show");
+          }, 1500);
         }
+
+
         </script>
 
         <!-- Twitch -->
@@ -331,9 +337,12 @@
         <br> -->
 
         <!-- Email -->
-        <a class="button button-default" href="mailto:elxssgitcontact@gmail.com" target="_blank" rel="noopener">
-            <img class="icon" src="images/icons/email.svg" alt="Email Icon">Mail</a>
-        <br>
+        <div class="popup" onclick="CopyToClipboard('email')">
+            <a class="button button-default" title="elxssgitcontact@gmail.com" target="_blank" rel="noopener">
+                <img class="icon" src="images/icons/email.svg" alt="Email Icon">Mail</a>
+            <br>
+            <span class="popuptext" value="elxssgitcontact@gmail.com" id="email"><a>elxssgitcontact@gmail.com</a> => 📋 Copied!</span>
+        </div>
 
         <!-- Email Alternative -->
         <a class="button button-default" href="maintenance.html" target="_blank" rel="noopener">
@@ -499,6 +508,14 @@
         <!-- <a class="button button-cashapp" href="#" target="_blank" rel="noopener">
             <img class="icon" src="images/icons/cashapp_btc.svg" alt="Cash App Logo">Cash App Bitcoin</a>
         <br> -->
+
+        <!-- Cash App XMR -->        
+        <div class="popup" onclick="CopyToClipboard('XMRWallet')">
+            <a class="button button-cashapp" target="_blank" rel="noopener">
+                <img class="icon" src="images/icons/monero-xmr.svg" alt="Cash App Logo">Monero Wallet</a>
+            <br>
+            <span class="popuptext" value="41xKjPXhM91K3Zwm1Ec6BCE1gRMVrBERpZLzRU6J4XZk7FHKszdVosUJeKDyJARVE8M5fmwdsowEr8BJf2Ut5YzYHooQNMn" id="XMRWallet"><a>XMR Wallet</a> => 📋 Copied!</span>
+        </div>
 
         <!-- dev.to -->
         <!-- <a class="button button-dev-to" href="#" target="_blank" rel="noopener">
