@@ -177,7 +177,7 @@ button:hover,
 /* Cash App */
 .button.button-cashapp {
   color: #ffffff;
-  background-image: linear-gradient(to bottom, #00d64b, #00c244);
+  background-image: linear-gradient(to bottom, #f26822, #ff8a23);
 }
 .button.button-cashapp:hover,
 .button.button-cashapp:focus {
