@@ -66,6 +66,6 @@ if (window.location.pathname === '/index.html' || window.location.pathname === '
     }
 } else {
     run();
-    setTimeout(function() {window.location.href = "index.html";}, 1000);
+    setTimeout(function() {window.location.href = "index.html";}, 4000);
 
 }
