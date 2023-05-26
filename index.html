@@ -6,10 +6,11 @@
   <!-- Page Information
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>LittleLink - Elxss</title>
-  <meta name="description" content="Resume of Elxss, a french student that would love to work in the IT">
-  <meta name="author" content="Seth Cottle">
+  <title>LitleLink - Ait Bahid Elias</title>
+  <meta name="description" content="Resume of Elxss 🪐">
+  <meta name="author" content="Elias Ait bahid based on a model made by Seth Cottle">
   <script src="clients-auth.js"></script>
+  
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -28,74 +29,18 @@
      -->
     <link rel="stylesheet" href="css/skeleton-auto.css">
 
+    <!-- Popup Styles -->
+    <link rel="stylesheet" href="css/popup.css">
+
     <!-- Brand Styles -->
     <link rel="stylesheet" href="css/brands.css">
 
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/avatar.png">
+  <link rel="icon" type="image/png" href="src/img/ninja.png" id="icon">
+  <script src="img.js"></script>
 
-
-
-  <style>
-    /* Popup container - can be anything you want */
-    .popup {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    
-    /* The actual popup */
-    .popup .popuptext {
-      visibility: hidden;
-      width: 240px;
-      background-color: #555;
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 8px 0;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      margin-left: -110px;
-    }
-    
-    /* Popup arrow */
-    .popup .popuptext::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #555 transparent transparent transparent;
-    }
-    
-    /* Toggle this class - hide and show the popup */
-    .popup .show {
-      visibility: visible;
-      -webkit-animation: fadeIn 1s;
-      animation: fadeIn 1s;
-    }
-    
-    /* Add animation (fade in the popup) */
-    @-webkit-keyframes fadeIn {
-      from {opacity: 0;} 
-      to {opacity: 1;}
-    }
-    
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity:1 ;}
-    }
-    </style>
 </head>
 
 <body>
@@ -344,10 +289,30 @@
             <span class="popuptext" value="elxssgitcontact@gmail.com" id="email"><a>elxssgitcontact@gmail.com</a> => 📋 Copied!</span>
         </div>
 
-        <!-- Email Alternative -->
-        <a class="button button-default" href="maintenance.html" target="_blank" rel="noopener">
-            <img class="icon" src="images/icons/email_alt.svg" alt="Email Icon">Curriculum Vitae</a>
+        <!-- Resume -->
+        <a class="button button-resume" href="#" target="_blank" rel="noopener">
+            <img class="icon" src="images/icons/info.ico" alt="Resume icon">Resume</a>
         <br>
+
+        <!-- Interractive Resume -->
+        <a class="button button-interractiveresume" href="maintenance.html" target="_blank" rel="noopener">
+            <img id="interractiveresume" class="icon" src="images/icons/interractive_resume.svg" alt="Email Icon">Interractive Resume</a>
+        <br>
+        <script>
+        const image = document.getElementById('interractiveresume');
+        const imagesArray = ['images/icons/interractive_resume.svg', 'images/icons/interractive_resume1.svg'];
+        let currentImageIndex = 0;
+        function changeImage() {
+          currentImageIndex = (currentImageIndex + 1) % imagesArray.length;
+          image.src = imagesArray[currentImageIndex];
+        }
+        setInterval(changeImage, 1000);
+        </script>
+
+        <!-- Email Alternative -->
+        <!-- <a class="button button-default" href="maintenance.html" target="_blank" rel="noopener">
+            <img class="icon" src="images/icons/email_alt.svg" alt="Email Icon">Curriculum Vitae</a>
+        <br> -->
 
         <!-- Blog -->
         <!-- <a class="button button-default" href="#" target="_blank" rel="noopener">
