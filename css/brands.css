@@ -77,10 +77,37 @@ button:hover,
 /* Default (this is great for your own brand color!) */
 .button.button-default {
   color: #ffffff;
-  background-color: #0085ff;
+  background-color: #000000;
+  border: 1px solid #f8f8f8; /* Ajoute une bordure intérieure de 2 pixels */
+  box-sizing: border-box;
 }
 .button.button-default:hover,
 .button.button-default:focus {
+  filter: brightness(90%);
+}
+
+/* Interractive Resume */
+.button.button-interractiveresume {
+  color: #3cff00;
+  background-color: #000000;/* Ajoute de l'espace entre le contenu et la bordure */
+  border: 1px solid #3cff00; /* Ajoute une bordure intérieure de 2 pixels */
+  box-sizing: border-box;
+}
+
+.button.button-interractiveresume:hover,
+.button.button-interractiveresume:focus {
+  filter: brightness(90%);
+}
+
+/* Resume */
+.button.button-resume {
+  color: #f8f8f8;
+  background-color: #000000;
+  border: 1px solid #7a7a7a; /* Ajoute une bordure intérieure de 2 pixels */
+  box-sizing: border-box;
+}
+.button.button-resume:hover,
+.button.button-resume:focus {
   filter: brightness(90%);
 }
 
@@ -177,7 +204,15 @@ button:hover,
 /* Cash App */
 .button.button-cashapp {
   color: #ffffff;
-  background-image: linear-gradient(to bottom, #f26822, #ff8a23);
+  background-image: linear-gradient(
+    25deg,
+    #d45d21,
+    #ff7700,
+    #e6bd0a,
+    #c47309,
+    #ff7b00,
+    #e26803
+  );
 }
 .button.button-cashapp:hover,
 .button.button-cashapp:focus {
@@ -197,7 +232,9 @@ button:hover,
 /* Discord */
 .button.button-discord {
   color: #ffffff;
-  background-color: #5865f2;
+  background-color: #000000;
+  border: 1px solid #5865f2; /* Ajoute une bordure intérieure de 2 pixels */
+  box-sizing: border-box;
 }
 .button.button-discord:hover,
 .button.button-discord:focus {
@@ -266,6 +303,8 @@ button:hover,
 .button.button-github {
   color: #ffffff;
   background-color: #000000;
+  border: 1px solid #fbff00; /* Ajoute une bordure intérieure de 2 pixels */
+  box-sizing: border-box;
 }
 .button.button-github:hover,
 .button.button-github:focus {
@@ -716,6 +755,8 @@ button:hover,
 .button.button-web {
   color: #ffffff;
   background-color: #000000;
+  border: 1px solid #ff00c8; /* Ajoute une bordure intérieure de 2 pixels */
+  box-sizing: border-box;
 }
 .button.button-web:hover,
 .button.button-web:focus {
@@ -756,6 +797,8 @@ button:hover,
 .button.button-yt {
   color: #ffffff;
   background-color: #000000;
+  border: 1px solid #ff0000; /* Ajoute une bordure intérieure de 2 pixels */
+  box-sizing: border-box;
 }
 .button.button-yt:hover,
 .button.button-yt:focus {
@@ -771,4 +814,3 @@ button:hover,
 .button.button-unsplash:focus {
   filter: brightness(90%);
 }
-
