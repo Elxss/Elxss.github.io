@@ -85,12 +85,10 @@
 html is set to 62.5% so that all the REM measurements throughout Skeleton
 are based on 10px sizing. So basically 1.5rem = 15px :) */
 
-/* color-scheme: dark; */
-
 html {
   font-size: 100%;
-  background-color: #1c1b22;
-  
+  color-scheme: dark;
+  background-color: #000000;
 }
 body {
   font-size: 18px;
@@ -128,10 +126,10 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: #0085ff;
+  color: #4899F7;
 }
 a:hover {
-  color: #0085ff;
+  color: #7AB8FF;
 }
 
 /* Code
@@ -203,8 +201,8 @@ hr {
 50% (default): True circle
 */
 .avatar {
-  width: 256px;
-  height: 256px;
+  width: 128px;
+  height: 128px;
   object-fit: cover;
   background-position: center;
   border-radius: 50%;
