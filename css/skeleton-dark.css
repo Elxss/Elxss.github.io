@@ -34,7 +34,7 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 1250px;
   text-align: center;
   margin: 0 auto;
   padding: 0 20px;
@@ -94,7 +94,7 @@ body {
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
-  font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
+  font-family: monospace, "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
 }
 
@@ -167,7 +167,7 @@ dl,
 figure,
 p,
 ol {
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Utilities
@@ -201,8 +201,8 @@ hr {
 50% (default): True circle
 */
 .avatar {
-  width: 128px;
-  height: 128px;
+  width: 248px;
+  height: 248px;
   object-fit: cover;
   background-position: center;
   border-radius: 50%;
@@ -259,4 +259,16 @@ hr {
        url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.woff') format('woff'), /* Modern Browsers */
        url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.ttf') format('truetype'), /* Safari, Android, iOS */
        url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+
+.button-pack {
+  display: flex;
+  flex-wrap: wrap;        /* permet plusieurs lignes si écran trop petit */
+  justify-content: center; /* centre tous les boutons */
+  gap: 5px;               /* espace entre les boutons */
+}
+
+.bio {
+  margin-bottom: 30px;
 }
