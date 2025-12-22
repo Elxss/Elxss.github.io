@@ -17,10 +17,9 @@ async function getClientInfo() {
 async function run() {
     await getClientInfo();
     createCookie("Auth", "1", "900")
-
 }
 
-if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+if (window.location.pathname === '/index.html' || window.location.pathname === '/E:/Bureau/Elxss.github.io-main/index.html') {
     console.log("TEST , TEST , Your are landing on the index page ! 🚀")
     if (document.cookie.includes('Visitor')) {
         console.log("You are not a new visitor 👨🏽‍🍳")
@@ -28,6 +27,7 @@ if (window.location.pathname === '/index.html' || window.location.pathname === '
         console.log("You are a new visitor 👨🏽‍🍳 ")
         createCookie("Visitor", "1")
     }
+
     if (!document.cookie.includes('Auth')) {
         console.log("Auth cookie not detected, cooking some for ya 👨🏽‍🍳")
         run();
@@ -35,8 +35,9 @@ if (window.location.pathname === '/index.html' || window.location.pathname === '
     } else {
         console.log("Auth Cookie present, 🍪 Miam :) ")
     }
+    
 } else {
+    console.log(window.location.pathname);
     run();
     setTimeout(function() {window.location.href = "index.html";}, 4000);
-
 }

@@ -7,11 +7,12 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>LittleLink - Elxss</title>
-  <meta name="description" content="a French Student that likes IT">
+  <meta name="description" content="French Student in Computer Science">
   <meta name="author" content="Elxss's fork based on a model made by Seth Cottle">
-  <script src="clients-auth.js"></script>
-  
 
+  <script src="./js/clients-auth.js"></script>
+  <script src="./js/clipboard.js"></script>
+  
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +39,7 @@
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="src/img/ninja.png" id="icon">
+  <link rel="icon" type="image/png" href="images/icon1.ico" id="icon">
   <script src="img.js"></script>
 
 </head>
@@ -72,13 +73,17 @@
         -->
 
         <!-- Your Image Here -->
-        <img src="https://avatars.githubusercontent.com/u/121466211?v=4" class="avatar" alt="Logo">
+        <img src="https://avatars.githubusercontent.com/u/121466211?v=1" class="avatar" alt="Logo">
 
         <!-- Title -->
-        <h1>🥷Elxss</h1>
+        <h1>Elxss</h1>
 
         <!-- Short Bio -->
-        <p>Hello! My name is Elias, i am a French Student that likes IT</p>
+        <div class="bio">
+            <p>Greetings !</p>
+            <p>I'm <i><strong>Elias</strong></i>, French Student in Computer Science</p>
+            <p><img class="icon icon-right icon-bottom" src="images/icons/fax.ico" title="What's this ?" alt="What's this Icon">this page is a <a href="https://github.com/Elxss/Elxss.github.io" target="_blank" rel="noopener">Little Link Fork</a> that totals all my links and projects :)</p>
+        </div>
         
         <!--
 
@@ -106,10 +111,47 @@
 
         -->
 
-        <!-- GitHub -->
-        <a class="button button-github" href="https://github.com/Elxss" target="_blank" rel="noopener">
-            <img class="icon" src="images/icons/github.svg" alt="GitHub Logo">GitHub</a>
-        <br>
+
+        <div class="button-pack">
+            <!-- Resume -->
+            <a class="button button-resume" href="unavailable.html" target="_blank" rel="noopener">
+                <img class="icon" src="images/icons/info.ico" alt="Resume icon">Resume</a>
+            <br>
+            
+            <a class="button button-interractiveresume" href="unavailable.html" target="_blank" rel="noopener">
+                <img id="interractiveresume" class="icon" src="images/icons/interractive_resume.svg" alt="Email Icon">
+                Portfolio
+                <img class="icon icon-bottom icon-right" src="images/icons/portfolio.ico" alt="Web Logo">
+            </a>
+            
+            <script>
+                const image = document.getElementById('interractiveresume');
+                const imagesArray = ['images/icons/interractive_resume.svg', 'images/icons/interractive_resume1.svg'];
+                let currentImageIndex = 0;
+
+                function changeImage() {
+                    currentImageIndex = (currentImageIndex + 1) % imagesArray.length;
+                    image.src = imagesArray[currentImageIndex];
+                }
+
+                setInterval(changeImage, 1000);
+            </script>
+            
+        </div>
+
+        <!-- <h3>Projects</h3> -->
+        <!-- <div class="button-pack"> -->
+            <!-- Web -->
+            <!-- <a class="button button-web" href="unavailable.html" target="_blank" rel="noopener">
+                <img class="icon" src="images/icons/web.svg" alt="Web Logo">Is my device supported Page Maker</a>
+            <br> -->
+
+            <!-- Web -->
+            <!-- <a class="button button-web" href="unavailable.html" target="_blank" rel="noopener">
+                <img class="icon" src="images/icons/shell32_8240.ico" alt="Web Logo">Is my device supported Page Maker</a>
+            <br>
+        </div> -->
+                    
 
         <!-- Twitter -->
         <!-- <a class="button button-twit" href="#" target="_blank" rel="noopener">
@@ -136,61 +178,21 @@
             <img class="icon" src="images/icons/linkedin.svg" alt="LinkedIn Logo">LinkedIn</a>
         <br> -->
 
-        <!-- YouTube -->
-        <a class="button button-yt" href="https://www.youtube.com/@Elxss" target="_blank" rel="noopener">
-            <img class="icon" src="images/icons/youtube.svg" alt="YouTube Logo">YouTube</a>
-        <br>
+        <h3>Socials</h3>
+        
+        <div class="button-pack">
 
-        <!-- Web -->
-        <a class="button button-web" href="maintenance.html" target="_blank" rel="noopener">
-            <img class="icon" src="images/icons/web.svg" alt="Web Logo">Website</a>
-        <br>
-
-        <!-- Discord -->
-        <div class="popup" onclick="CopyToClipboard('Discord')">
-        <a class="button button-discord" rel="noopener" id="myButton">
-            <img class="icon" src="images/icons/discord.svg" alt="Discord Logo">Discord</a>
-        <br>
-        <span class="popuptext" value="Eliasss#8886" id="Discord"><a>Eliasss#8886</a> => 📋 Copied!</span>
+            <!-- GitHub -->
+            <a class="button button-github" href="https://github.com/Elxss" target="_blank" rel="noopener">
+                <img class="icon" src="images/icons/github.svg" alt="GitHub Logo">
+                GitHub
+            </a>
+            
+            <!-- YouTube -->
+            <a class="button button-yt" href="https://www.youtube.com/@Elxss" target="_blank" rel="noopener">
+                <img class="icon" src="images/icons/youtube.svg" alt="YouTube Logo">YouTube</a>
+            <br>
         </div>
-          
-        <script>
-        // Special Regards to ChatGpt for the Help to fix it for mobile devices
-        function CopyToClipboard(where) {
-          var popup = document.getElementById(where);
-          popup.classList.toggle("show");
-          var popupValue = popup.getAttribute("value");
-        
-          // Create a temporary element to copy the text
-          var temp = document.createElement("textarea");
-          temp.style.position = "absolute";
-          temp.style.left = "-1000px";
-          temp.style.top = "-1000px";
-          temp.value = popupValue;
-          document.body.appendChild(temp);
-        
-          // Select the text field
-          temp.select();
-          temp.setSelectionRange(0, 99999); // For mobile devices
-        
-          // Copy the text inside the text field
-          try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('BIP , BOUP , Text Copied to Clipboard 📋 : ' + popupValue);
-          } catch (err) {
-            console.log('Oops, unable to copy', err);
-          }
-          // Remove the temporary element
-          document.body.removeChild(temp);
-          
-          setTimeout(function() {   
-          popup.classList.remove("show");
-          }, 1500);
-        }
-
-
-        </script>
 
         <!-- Twitch -->
         <!-- <a class="button button-twitch" href="#" target="_blank" rel="noopener">
@@ -282,36 +284,42 @@
             <img class="icon" src="images/icons/tiktok.svg" alt="TikTok Logo">TikTok</a>
         <br> -->
 
-        <!-- Email -->
-        <div class="popup" onclick="CopyToClipboard('email')">
-            <a class="button button-default" title="elxssgitcontact@gmail.com" target="_blank" rel="noopener">
-                <img class="icon" src="images/icons/email.svg" alt="Email Icon">Mail</a>
+        <h3>Contact</h3>
+
+        <div class="button-pack">
+            <!-- Email -->
+            <div class="popup" onclick="CopyToClipboard('email')">
+                <a class="button button-default" title="elxssgitcontact@gmail.com" target="_blank" rel="noopener">
+                    <img class="icon" src="images/icons/email.svg" alt="Email Icon">Mail</a>
+                <br>
+                <span class="popuptext" value="elxssgitcontact@gmail.com" id="email"><a>elxssgitcontact@gmail.com</a> => 📋 Copied!</span>
+            </div>
+
+            <!-- PGP -->
+            <a class="button button-default" href="unavailable.html" target="_blank" rel="noopener">
+                    PGP<img class="icon icon-bottom icon-right" src="images/icons/keys.ico" alt="PGP Icon"></a>
             <br>
-            <span class="popuptext" value="elxssgitcontact@gmail.com" id="email"><a>elxssgitcontact@gmail.com</a> => 📋 Copied!</span>
+
+            <!-- Simplex -->
+            <!-- <div class="popup" onclick="CopyToClipboard('Discord')">
+                <a class="button button-discord" rel="noopener" id="myButton">
+                    <img class="icon" src="images/icons/discord.svg" alt="Discord Logo">Simplex</a>
+                <br>
+                <span class="popuptext" value="xxxxx" id="Discord"><a>xxxxx</a> => 📋 Copied!</span>
+            </div> -->
+
+            <!-- Cash App XMR -->        
+            <!-- <div class="popup" onclick="CopyToClipboard('XMRWallet')">
+                <a class="button button-cashapp" target="_blank" rel="noopener">
+                    <img class="icon" src="images/icons/monero-xmr.svg" alt="Cash App Logo">Monero Wallet</a>
+                <br>
+                <span class="popuptext" value="NOT AVAILABLE AT THE MOMENT" id="XMRWallet"><a>XMR Wallet</a> => 📋 Copied!</span>
+            </div> -->
         </div>
 
-        <!-- Resume -->
-        <a class="button button-resume" href="maintenance.html" target="_blank" rel="noopener">
-            <img class="icon" src="images/icons/info.ico" alt="Resume icon">Resume</a>
-        <br>
-
-        <!-- Interractive Resume -->
-        <a class="button button-interractiveresume" href="maintenance.html" target="_blank" rel="noopener">
-            <img id="interractiveresume" class="icon" src="images/icons/interractive_resume.svg" alt="Email Icon">Interractive Resume</a>
-        <br>
-        <script>
-        const image = document.getElementById('interractiveresume');
-        const imagesArray = ['images/icons/interractive_resume.svg', 'images/icons/interractive_resume1.svg'];
-        let currentImageIndex = 0;
-        function changeImage() {
-          currentImageIndex = (currentImageIndex + 1) % imagesArray.length;
-          image.src = imagesArray[currentImageIndex];
-        }
-        setInterval(changeImage, 1000);
-        </script>
 
         <!-- Email Alternative -->
-        <!-- <a class="button button-default" href="maintenance.html" target="_blank" rel="noopener">
+        <!-- <a class="button button-default" href="unavailable.html" target="_blank" rel="noopener">
             <img class="icon" src="images/icons/email_alt.svg" alt="Email Icon">Curriculum Vitae</a>
         <br> -->
 
@@ -475,14 +483,6 @@
             <img class="icon" src="images/icons/cashapp_btc.svg" alt="Cash App Logo">Cash App Bitcoin</a>
         <br> -->
 
-        <!-- Cash App XMR -->        
-        <div class="popup" onclick="CopyToClipboard('XMRWallet')">
-            <a class="button button-cashapp" target="_blank" rel="noopener">
-                <img class="icon" src="images/icons/monero-xmr.svg" alt="Cash App Logo">Monero Wallet</a>
-            <br>
-            <span class="popuptext" value="NOT AVAILABLE AT THE MOMENT" id="XMRWallet"><a>XMR Wallet</a> => 📋 Copied!</span>
-        </div>
-
         <!-- dev.to -->
         <!-- <a class="button button-dev-to" href="#" target="_blank" rel="noopener">
             <img class="icon" src="images/icons/dev_to.svg" alt="dev.to Logo">dev.to</a>
@@ -555,7 +555,7 @@
             This also includes a link to the LittleLink repository to make forking LittleLink easier.
             You can edit or remove anything here to make your own footer.
         -->
-        <p><a href="privacy.html">Privacy Policy</a> | <a href="https://github.com/Elxss/Elxss.github.io" target="_blank" rel="noopener">Elxss's Fork</a> 💡 | Based on <a href="https://littlelink.io" target="_blank" rel="noopener">LittleLink</a></p>
+        <p><a href="privacy.html">Privacy Policy</a> | <a href="https://github.com/Elxss/Elxss.github.io" target="_blank" rel="noopener">This is a fork of Little link</a> 💡 | Based on <a href="https://littlelink.io" target="_blank" rel="noopener">LittleLink</a></p>
         
       </div>
     </div>

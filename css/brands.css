@@ -31,20 +31,21 @@
 
 .button,
 button {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
-  height: 48px;
   text-align: center;
-  vertical-align: middle;
   font-size: 18px;
   width: 300px;
   font-weight: 700;
-  line-height: 48px;
-  letter-spacing: 0.1px;
-  white-space: wrap;
+  white-space: normal;
   border-radius: 8px;
   cursor: pointer;
+  padding: 12px 20px;
+  box-sizing: border-box;
 }
+
 button:hover,
 .button:focus {
   color: #333;
@@ -67,9 +68,18 @@ button:hover,
 .icon {
   padding: 0px 8px 3.5px 0px;
   vertical-align: middle;
-  width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 23px;
 }
+
+.icon-right {
+  margin-left: 8px;
+}
+
+.icon-bottom {
+  margin-top: 2px;
+}
+
 
 /* Brand Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -78,7 +88,7 @@ button:hover,
 .button.button-default {
   color: #ffffff;
   background-color: #000000;
-  border: 1px solid #f8f8f8; /* Ajoute une bordure intérieure de 2 pixels */
+  border: 1px solid #f8f8f8;
   box-sizing: border-box;
 }
 .button.button-default:hover,
@@ -86,11 +96,11 @@ button:hover,
   filter: brightness(90%);
 }
 
-/* Interractive Resume */
+/* Portfolio */
 .button.button-interractiveresume {
   color: #3cff00;
-  background-color: #000000;/* Ajoute de l'espace entre le contenu et la bordure */
-  border: 1px solid #3cff00; /* Ajoute une bordure intérieure de 2 pixels */
+  background-color: #000000;
+  border: 1px solid #3cff00;
   box-sizing: border-box;
 }
 
@@ -103,7 +113,7 @@ button:hover,
 .button.button-resume {
   color: #f8f8f8;
   background-color: #000000;
-  border: 1px solid #7a7a7a; /* Ajoute une bordure intérieure de 2 pixels */
+  border: 1px solid #7a7a7a;
   box-sizing: border-box;
 }
 .button.button-resume:hover,
