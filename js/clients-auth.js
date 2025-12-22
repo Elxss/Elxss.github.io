@@ -19,7 +19,7 @@ async function run() {
     createCookie("Auth", "1", "900")
 }
 
-if (window.location.pathname === '/index.html' || window.location.pathname === '/E:/Bureau/Elxss.github.io-main/index.html') {
+if (window.location.pathname === '/index.html' || window.location.pathname === '/' || window.location.pathname === '') {
     console.log("TEST , TEST , Your are landing on the index page ! 🚀")
     if (document.cookie.includes('Visitor')) {
         console.log("You are not a new visitor 👨🏽‍🍳")
