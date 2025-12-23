@@ -33,7 +33,7 @@ if (window.location.pathname === '/index.html' || window.location.pathname === '
         run();
         console.log("Here they are, delicious ( they won't be good in 15 minutes, eat them fast! ) :)🍪")
     } else {
-        console.log("Auth Cookie present, 🍪 Miam :) ")
+        console.log("Auth Cookie present, 🍪 Yummy :) ")
     }
     
 } else {
