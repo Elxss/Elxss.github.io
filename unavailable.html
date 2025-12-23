@@ -1,21 +1,32 @@
 <!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page Unavailable</title>
 <style>
-  body { text-align: center; padding: 150px; background-color:#000000 ;}
-  h1 { font-size: 50px; }
-  body { font: 20px Helvetica, sans-serif; color: #ffffff; }
-  article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-  a { color: #3cff00; text-decoration: none; }
-  a:hover { color: #ffffff; text-decoration: none; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #000000; font: 18px Helvetica, sans-serif; color: #ffffff; line-height: 1.6; padding: 20px; }
+article { max-width: 650px; text-align: left; }
+h1 { font-size: 2.5rem; margin: 0; }
+p { margin-bottom: 15px; }
+div { margin-top: 20px; }
+a { color: #3cff00; text-decoration: none; }
+a:hover { color: #ffffff; }
+@media (max-width: 768px) { body { padding: 15px; font-size: 16px; } h1 { font-size: 2rem; } }
+@media (max-width: 480px) { body { padding: 10px; font-size: 14px; } h1 { font-size: 1.5rem; } }
 </style>
-
+</head>
+<body>
 <article>
-    <h1>Might be back soon !</h1>
+    <h1>Currently Unavailable :'(</h1>
+    <h2>Might be back soon!</h2>
     <div>
-        <p>Sorry for the inconvenience but this page seems to be unavailable at the moment.
-           If you need to you can always <a href="mailto:elxssgitcontact@gmail.com">contact me</a>
-           or you can even check <a href="https://github.com/Elxss">my github</a>, 
-           otherwise this might be back soon!</p>
+        <p>Sorry for the inconvenience, but this page seems to be unavailable at the moment.
+           If you need to, you can always <a href="mailto:elxssgitcontact@gmail.com">contact me</a>,
+           or you can even check <a href="https://github.com/Elxss">my GitHub</a>. Otherwise, this might be back soon!</p>
         <p>&mdash; Elxss</p>
     </div>
 </article>
+</body>
+</html>
