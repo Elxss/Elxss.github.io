@@ -135,11 +135,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     ];
 
     let ChannelVideoTitle = [
-        ["Main Menu", "#"],
+        ["DVD Logo bouncing", "#"],
     ];
 
     let ChannelVideoSource = [
-        "./assets/vhs1.mp4",
+        "https://letube.ovh/videos/vhs.mp4",
     ];
 
     // === INIT DOM SELECTION ===
