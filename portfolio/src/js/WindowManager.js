@@ -1,5 +1,7 @@
 console.log("[WindowManager.js] Loading")
 
+console.log("[WindowManager.js] This project is actively getting worked on, i try to work on it aside from uni and my job")
+
 document.addEventListener("DOMContentLoaded", () => {
     let zIndexCounter = 100;
   
@@ -72,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
       if (btnClose) {
-        // 🔧 CORRIGÉ : on cache la fenêtre au lieu de la supprimer
+
         btnClose.addEventListener("click", () => { 
           win.style.display = "none";
         });
@@ -168,11 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== DEBUG CONSOLE =====
     window.debug_show_controlpanel = function() {
-      console.log("🧩 Debug: ouverture du Control Panel demandée depuis DevTools.");
+      console.log("🧩 Debug: ouverture du Control Panel depuis DevTools");
+
       openControlPanel();
     };
   
-    console.log("%c💡 Astuce :", "color: cyan; font-weight:bold", "Vous pouvez ouvrir le Control Panel depuis la console avec : debug_show_controlpanel()");
+    // console.log("%c💡 Astuce :", "color: cyan; font-weight:bold", "Vous pouvez ouvrir le Control Panel depuis la console avec : debug_show_controlpanel()");
   });
 
   /////////////////////////////
@@ -196,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function openLinkStarRepo() {
-    openLinkBlank('https://www.youtube.com/'); 
+    openLinkBlank('https://github.com/Elxss/Elxss.github.io'); 
   }
   
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -209,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         openControlPanel: () => {window.debug_show_controlpanel();},
         openCredits: () => { openLinkBlank('https://www.youtube.com/'); },
         StarThisRepo: () => { openLinkStarRepo() },
-        openResume: () => { alert("Ouverture du CV !"); },
+        openResume: () => { alert("."); },
       };
 
       desktopItems.forEach(item => {
