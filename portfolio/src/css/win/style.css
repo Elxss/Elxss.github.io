@@ -1,0 +1,363 @@
+/* Fenêtre */
+.window {
+    margin: 32px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    cursor: move;
+
+    overflow: hidden;
+    resize: both;
+}
+
+.panel {
+    min-width: 600px;
+    min-height: 400px;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+/* Barre de titre */
+.title-bar-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.title-bar-text img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Corps de la fenêtre */
+.window-body {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;   /* 1px initial + 1px pour bordure XP */
+    padding-right: 7px;
+    margin: 0;
+
+    gap: 1px;
+    width: 100%;
+    flex: 1 1 auto;
+    overflow: hidden;
+    box-sizing: border-box;
+    min-height: 0;       /* essentiel pour le flex */
+}
+
+/* Wrapper interne pour contrôler contenu */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    width: calc(100% - 4px);
+    flex: 1 1 auto;
+    min-height: 0;
+    box-sizing: border-box;
+}
+
+/* Styles communs Windows XP pour tous les boutons/liens */
+.winxp-style {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #c6c3b4;
+    background: linear-gradient(to bottom, #f1efda, #f1efda);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* Ligne violette */
+.header-row {
+    display: flex;
+    gap: 0;               /* supprime tout espace interne entre enfants */
+    margin: 0;
+    padding: 0;           /* plus de padding qui crée du vide gauche/droite */
+    background-color: #ece9d8;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    border-bottom: 2px solid #c6c3b4;
+    height: 30px;
+}
+
+/* Bouton Adresse spécifique */
+.adresse-btn {
+    flex: 0 0 auto;
+    padding: 0 6px;       /* garde un peu d’air à l’intérieur du bouton */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid #c6c3b4;
+    margin: 0;            /* colle à la gauche */
+}
+
+/* Bouton OK spécifique */
+.OK_BTN {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    color: black;
+    padding: 0 6px;
+    border: 1px solid #c6c3b4;
+    background: linear-gradient(to bottom, #f1efda, #f1efda);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    cursor: pointer;
+    flex: 0 0 auto;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;            /* colle à la droite */
+}
+
+.OK_BTN img {
+    width: 20px;
+    height: auto;
+}
+
+.OK_BTN:active {
+    transform: translate(1px, 1px);
+}
+
+/* Select dans la barre */
+.header-row select {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;            /* pas de marge gauche/droite */
+    padding: 0 4px;
+    border: 1px solid #c6c3b4;
+    height: 100%;         /* aligne avec Address & OK */
+    box-sizing: border-box;
+}
+
+/* Icônes grisées */
+.greyyed {
+    filter: grayscale(100%);
+}
+
+/* Conteneur des colonnes */
+.columns {
+    display: flex;
+    gap: 0;
+    flex: 1 1 auto;       /* s’étend verticalement */
+    width: 100%;
+    min-height: 0;
+}
+
+/* Colonne gauche (bleu avec gradient) */
+/* Colonne gauche (bleu avec gradient) */
+.left-column {
+    flex: 0 0 30%;
+    max-width: 280px;  /* largeur max, à ajuster selon ton besoin */
+    background: linear-gradient(
+        to bottom right,
+        #7ca4df 0%,  /* haut gauche */
+        #82a2da 50%, /* haut droite / milieu */
+        #6476d5 100% /* bas */
+    );
+    color: white;
+    padding: 8px;
+    margin: 0;
+    min-height: 0;
+    box-sizing: border-box;
+}
+
+/* Section See Also */
+.see-also {
+    color: blue;
+    border: 1px solid #c6c3b4;
+    background: linear-gradient(to bottom, #f1efda, #f1efda);
+    margin-top: 8px;
+    box-sizing: border-box;
+
+    /* Arrondi uniquement en haut */
+    border-radius: 5px 5px 0 0;
+}
+
+.see-also-header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.see-also-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.toggle-arrow {
+    margin-left: auto;
+}
+
+/* Contenu */
+.see-also-content {
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: column; /* empilement vertical */
+    gap: 3px;              /* espace entre les items */
+    background: linear-gradient(
+        to bottom right,
+        #dddefa 0%,
+        #d6e0fb 50%,
+        #d8ddfa 75%,
+        #d6ddf7 100%
+    );
+    margin: 1px;
+    box-sizing: border-box;
+}
+
+/* Items cliquables */
+.see-also-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 7px;
+    border-radius: 5px;
+    text-decoration: none;  /* supprime le souligné si <a> */
+    color: inherit;         /* conserve la couleur du texte */
+    transition: all 0.2s ease;
+    cursor: pointer;        /* montre que c'est cliquable */
+}
+
+.see-also-item:hover {
+    background-color: rgba(200, 200, 255, 0.3); /* léger effet hover */
+    transform: translateY(-1px);                /* léger effet 3D */
+}
+
+
+.see-also-item img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Colonne droite (rouge) */
+.right-column {
+    flex: 0 0 70%;
+    color: black;
+    padding: 8px;
+    margin: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grille de la colonne droite */
+.right-column-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* chaque cellule a au moins 100px */
+    grid-auto-rows: auto;    /* chaque ligne prend la hauteur du contenu */
+    row-gap: 15px;           /* espace entre les lignes */
+    column-gap: 15px;        /* espace entre colonnes */
+    width: 100%;
+    justify-items: center;    /* centre chaque item horizontalement */
+    align-items: start;       /* top align les items */
+    text-align: center;
+}
+
+/* Chaque item de la grille */
+/* Styles de base pour les items */
+.right-column-grid-item {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4px; /* espace interne pour le contour */
+    transition: color 0.2s, border-color 0.2s;
+}
+
+/* Hover léger pour feedback */
+.right-column-grid-item:hover span {
+    color: blue;
+}
+
+/* Item sélectionné */
+.right-column-grid-item.selected {
+    border: 1px dotted blue; /* contour pointillé autour de la div */
+}
+
+/* Texte en bleu foncé ou blanc selon sélection */
+.right-column-grid-item.selected span {
+    color: white; /* texte en blanc */
+    background-color: #6476d5;
+}
+
+
+/* Conteneur pour l’image, fixe en hauteur */
+.right-column-grid-item .img-container {
+    height: 50px;             /* hauteur fixe pour toutes les images */
+    display: flex;
+    align-items: center;      /* centre verticalement l’image */
+    justify-content: center;  /* centre horizontalement l’image */
+    margin-bottom: 4px;       /* espace entre image et texte */
+}
+
+/* Image responsive dans son conteneur */
+.right-column-grid-item img {
+    max-height: 100%;         /* ne dépasse pas la hauteur du conteneur */
+    width: auto;
+    object-fit: contain;
+}
+
+/* Texte centré et adaptable */
+.right-column-grid-item span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+/* Select avec largeur fixe */
+select.fixed-width {
+    flex: 0 0 150px;
+}
+
+/* Select standard */
+select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.disabled {
+    pointer-events: none;  /* empêche tout clic */
+}
+
+/* Appliquer la police rétro Windows */
+.window,
+.header-row,
+.winxp-style,
+.adresse-btn,
+.winxp,
+.see-also,
+.see-also-content,
+.right-column-grid-item,
+select {
+    font-family: "Pixelated MS Sans Serif", Tahoma, sans-serif;
+}
+
+.status-bar {
+    flex: 0 0 auto;   /* ne s’étend jamais avec le flex parent */
+    height: 20px;      /* fixe sa hauteur */
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    box-sizing: border-box;
+}

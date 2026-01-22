@@ -1,0 +1,16 @@
+/* Par défaut, l’indicateur est caché */
+#muted,
+#vol,
+#blurred {
+    display: none;          /* ou visibility: hidden; si tu veux garder l’espace */
+    opacity: 0;
+    transition: opacity 0.1s; /* pas smooth, pour effet "saccadé" */
+}
+
+/* Quand actif */
+#muted.active,
+#vol.active,
+#blurred.active {
+    display: block;         /* ou visibility: visible; */
+    opacity: 1;
+}

@@ -1,0 +1,71 @@
+/* Grille du desktop */
+.television-support .desktop-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* 10 colonnes */
+  grid-template-rows: repeat(10, 100px); /* lignes fixes pour stabilité */
+  width: 100%;
+  height: 100%; /* couvre tout l'écran */
+  position: absolute; /* superposé sur la vidéo */
+  top: 0;
+  left: 0;
+  z-index: 2; /* au-dessus de la vidéo */
+  pointer-events: none; /* laisse passer les clics derrière la grille */
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: transparent; /* PAS de fond blanc */
+}
+
+/* Icônes du desktop */
+.television-support .desktop-grid .clickable-item-win {
+  pointer-events: auto; /* icônes cliquables */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 4px; /* centrer image + texte */
+  box-sizing: border-box;
+  transition: color 0.2s, outline 0.2s;
+  height: 100%; /* occupe toute la cellule pour stabilité */
+}
+
+/* Hover sur les icônes */
+.television-support .desktop-grid .clickable-item-win:hover span {
+  color: blue;
+}
+
+/* Sélection d'une icône */
+.television-support .desktop-grid .clickable-item-win.selected {
+  outline: 1px dotted blue; /* outline ne change pas la taille */
+}
+
+.television-support .desktop-grid .clickable-item-win.selected span {
+  color: white;
+  background-color: #6476d5;
+}
+
+/* Conteneur de l'image de l'icône */
+.television-support .desktop-grid .clickable-item-win .img-container {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+/* Image de l'icône */
+.television-support .desktop-grid .clickable-item-win img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Texte sous l'icône */
+.television-support .desktop-grid .clickable-item-win span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  word-wrap: break-word;
+}

@@ -1,0 +1,135 @@
+      /* Styles uniquement pour les fenêtres messagebox */
+      .window.messagebox {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block; /* s'adapte à la taille du contenu */
+        max-width: 90%;
+        padding: 0;
+        font-family: "Pixelated MS Sans Serif", Tahoma, sans-serif;
+      
+        /* Empêche le redimensionnement */
+        resize: none;       /* pas de redimensionnement via CSS */
+        overflow: hidden;   /* cacher tout débordement */
+      }
+      
+      /* Empêche les scripts de drag/resize sur la messagebox */
+      .window.messagebox .title-bar {
+        cursor: default; /* on peut garder le grab pour déplacer si nécessaire */
+        pointer-events: auto; 
+      }
+      
+      /* Blocage des coins/bords de resize si tu avais des handlers JS */
+      .window.messagebox .resize-handle {
+        display: none !important;
+      }
+      
+      .window.messagebox .window-body {
+        padding: 10px; /* padding minimum */
+      }
+
+      .window.messagebox .title-bar-text {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+      }
+
+      .window.messagebox .title-bar-text img {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Contenu message box */
+      .window.messagebox .window-body .content {
+        display: flex;
+        gap: 10px; /* espace minimal entre image et texte */
+        align-items: center; /* texte centré verticalement par rapport à l'image */
+      }
+
+      .window.messagebox .window-body .image-container {
+        flex: 0 0 auto;
+        padding: 0;
+      }
+
+      .window.messagebox .window-body .image-container img {
+        display: block;
+        max-width: 100px;
+        max-height: 100px;
+        margin: 0;
+      }
+
+      .window.messagebox .window-body .text-container {
+        flex: 1;
+        padding: 0;
+        display: flex;
+        align-items: center; /* centrer verticalement le texte */
+      }
+
+      .window.messagebox .window-body .text-container p {
+        margin: 0; /* plus de marge verticale, texte centré */
+      }
+
+      /* Boutons en bas à droite */
+      .window.messagebox .button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+      }
+
+      .window.messagebox .button-container button {
+        margin-left: 6px;
+      }
+
+      .window.messagebox {
+        display: none; /* <-- important */
+      }
+
+      .title-bar-text {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+  
+      .title-bar-text img {
+        width: 20px;
+        height: 20px;
+      }
+  
+      .img-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+  
+      .img-left img {
+        max-width: 150px;
+        height: auto;
+      }
+  
+      .img-left p {
+        margin: 0;
+      }
+  
+      code {
+        font-style: italic;
+      }
+
+      .window {
+        cursor: default;
+      }
+      
+      /* Curseur de déplacement UNIQUEMENT sur la title bar */
+      .window .title-bar {
+        cursor: move;
+      }
+      
+      /* Curseur pointer sur les boutons pour éviter le curseur move dessus */
+      .window .title-bar-controls button {
+        cursor: pointer;
+      }
+
+      .window button {
+        cursor: pointer;
+      }

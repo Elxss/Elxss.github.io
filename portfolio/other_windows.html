@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>XP.css example</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://unpkg.com/98.css@0.1.21/dist/98.css" />
+    <style>
+      .window {
+        margin: 32px;
+        display: inline-block;
+        position: fixed; /* nécessaire pour draggable */
+        top: 50px; /* position initiale */
+        left: 50px;
+        cursor: move; /* indique que c’est draggable */
+      }
+
+      .title-bar-text {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .title-bar-text img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .img-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .img-left img {
+        max-width: 150px;
+        height: auto;
+      }
+
+      .img-left p {
+        margin: 0;
+      }
+
+      code {
+        font-style: italic;
+      }
+
+      .img-left button {
+  display: flex;
+  align-items: center;     /* centre verticalement */
+  gap: 8px;                /* espace entre l’image et le texte */
+
+
+  cursor: pointer;
+}
+
+.img-left button img {
+  width: 20px;             /* ajuste selon la taille souhaitée */
+  height: 20px;
+}
+
+
+
+    </style>
+  </head>
+
+  <body>
+    <!-- Fenêtres -->
+    <div class="window" id="popup1">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="window.gif" alt="icone">
+          Clippy.js - Welkom !
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="img-left">
+          <img src="clippy.png" alt="Clippy">
+          <div>
+            <p>Hello Dear Visitor !</p>
+            <br>
+            <p>It appears it's your first time here, Welcome !</p>
+            <br>
+            <p>Do you wish for a small tour ?</p>
+          </div>
+        </div>
+        <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
+          <button id="sure1">SURE</button>
+          <button>Not my first rodeo here !</button>
+        </section>
+      </div>
+    </div>
+
+    <div class="window" id="popup2">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="window.gif" alt="icone">
+          Clippy.js - Me !
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="img-left">
+          <img src="me.png" alt="Me ( i did this, i am proud )">
+          <div>
+            <p>I'm Elias (Elxss), a third-year Computer Science student.</p>
+            <br>
+            <p>I am passionate about <strong>Cybersecurity</strong> and hope to pursue further studies in this field.</p>
+          </div>
+        </div>
+        <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
+          <button id="prev2">Previous</button>
+          <button id="next2">Next =></button>
+        </section>
+      </div>
+    </div>
+
+    <div class="window" id="popup3">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="window.gif" alt="icone">
+          Clippy.js - This page :)
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="img-left">
+          <div>
+            <p>This page is my <strong>portfolio</strong>.</p>
+            <br>
+            <p>This is a <strong>TV</strong> and <strong>YOU have the controller</strong>! Change the channel and see what's on.</p>
+            <br>
+            <p>Each channel has its own content. This TV is a <strong>JavaScript module : <code>Television.js</code></strong>.</p>
+            <p>Accompanied by <strong><code>MdInterpreter.js</code></strong>, it interprets <code>README.md</code> files from all my projects and brings them to life.</p>
+          </div>
+        </div>
+        <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
+          <button id="prev3">Previous</button>
+        </section>
+      </div>
+    </div>
+
+    <div class="window" id="popupWindow">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="img/nyancat.gif" alt="icone">
+          Credits - Whos credited ???
+        </div>
+
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="img-left">
+          <img src="img/nyancat.gif" alt="icone">
+          <div>
+            <p>Credits</p>
+            <br>
+            <p>Md </p>
+            <br>
+            <p>Do you wish for a small tour ?</p>
+          </div>
+        </div>
+
+        <!-- <section class="field-row">
+          <button>SURE</button>
+          <button>Not my first rodeo here !</button>
+        </section> -->
+      </div>
+    </div>
+
+    <div class="window" id="popupWindow">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/295.ico" alt="icone">
+          Manage Theme
+        </div>
+
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="img-left">
+          <button><img src="./img/295.ico" alt="icone">Windows XP (default)</button>
+          <button><img src="./img/295.ico" alt="icone">Windows 98 (not fully implemented)</button>
+        </div>
+
+        <p>Select the Theme you prefer !</p>
+        
+
+        <div class="status-bar">
+          <p class="status-bar-field" id="control-panel-items">Current : WindowsXP.css</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="window" id="popupWindow">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/181.ico" alt="icone">
+          Play custom video on Televeision
+        </div>
+
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="img-left">
+          <img src="./img/181.ico" alt="icone">
+          <div class="field-row">
+            <label for="text21">Video Url : </label>
+            <input id="text21" type="text" />
+          </div>
+          <button>Play !</button>
+        </div>
+
+        <!-- <section class="field-row">
+          <button>SURE</button>
+          <button>Not my first rodeo here !</button>
+        </section> -->
+        <div class="status-bar">
+          <p class="status-bar-field" id="control-panel-items">Status : Waiting For Content</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="window" id="popupWindow">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/210.ico" alt="icone">
+          Play custom MD file on Televeision
+        </div>
+
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="img-left">
+          <img src="./img/210.ico" alt="icone">
+          <div class="field-row">
+            <label for="text21">MD file Url : </label>
+            <input id="text21" type="text" />
+          </div>
+          <button>GO !</button>
+        </div>
+
+        <div class="status-bar">
+          <p class="status-bar-field" id="control-panel-items">Status : Waiting For Content</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Afficher directement la première fenêtre
+      const popup1 = document.getElementById('popup1');
+      const popup2 = document.getElementById('popup2');
+      const popup3 = document.getElementById('popup3');
+      popup1.style.display = 'inline-block';
+
+      // Gestion des boutons pour passer à la fenêtre suivante
+      document.getElementById('sure1').onclick = () => {
+        popup1.style.display = 'none';
+        popup2.style.display = 'inline-block';
+      };
+
+      document.getElementById('next2').onclick = () => {
+        popup2.style.display = 'none';
+        popup3.style.display = 'inline-block';
+      };
+
+      document.getElementById('prev2').onclick = () => {
+        popup2.style.display = 'none';
+        popup1.style.display = 'inline-block';
+      };
+
+      document.getElementById('prev3').onclick = () => {
+        popup3.style.display = 'none';
+        popup2.style.display = 'inline-block';
+      };
+
+      // Rendre toutes les fenêtres drag-and-drop
+      const windows = document.querySelectorAll('.window');
+      windows.forEach(win => {
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        const header = win.querySelector('.title-bar');
+        header.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          offsetX = e.clientX - win.offsetLeft;
+          offsetY = e.clientY - win.offsetTop;
+          win.style.zIndex = 1000; // mettre au-dessus
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          if (isDragging) {
+            win.style.left = e.clientX - offsetX + 'px';
+            win.style.top = e.clientY - offsetY + 'px';
+          }
+        });
+
+        document.addEventListener('mouseup', () => {
+          isDragging = false;
+        });
+      });
+    </script>
+  </body>
+</html>

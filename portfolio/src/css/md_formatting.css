@@ -1,0 +1,28 @@
+code {
+    all: unset;
+    display: block;                  /* bloc pour prendre une ligne complète */
+    margin: 1em auto;                /* espace vertical + centré horizontalement */
+    width: 70%;                       /* 15% de marge de chaque côté → 70% largeur */
+    
+    background-color: black;          /* fond noir */
+    border: 2px solid white;          /* bordure blanche */
+    box-sizing: border-box;
+    
+    padding: 10px;                    /* espace interne autour du texte */
+    text-align: left;                 /* texte aligné à gauche */
+    color: white;                     /* texte visible */
+    white-space: pre-wrap;            /* garder les retours à la ligne */
+    font-size: 110%;                  /* texte plus grand de 10% */
+}
+
+#force_css {
+    font-family: monospace;
+    font-size: 110%;                  /* texte plus grand de 10% */
+}
+
+#force_css > div img {
+    max-width: 75%;       /* jamais dépasser la largeur du parent div */
+    height: auto;         /* garder les proportions */
+    display: block;       /* pour centrer correctement */
+    margin: 1em auto;     /* 1em vertical + centré horizontalement */
+}

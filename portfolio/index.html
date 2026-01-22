@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elxss's portfolio</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./src/css/md_formatting.css">
+
+  <link rel="stylesheet" href="./src/css/def.css">
+  <link rel="stylesheet" href="./src/css/remote_televeision_text.css">
+  <link rel="stylesheet" href="./src/css/active_unactive.css">
+  <link rel="stylesheet" href="./src/css/remote.css">
+  <link rel="stylesheet" href="./src/css/xp_winxp.css">
+  <link rel="stylesheet" href="./src/css/win/style.css">
+  <link rel="stylesheet" href="./src/css/win/desktop.css">
+  <link rel="stylesheet" href="./src/css/win/messagebox.css">
+  <link rel="stylesheet" href="./src/css/win/custom_header.css">
+
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
+  <script src="./src/js/televeision.js"></script>
+  <script src="./src/js/remote.js"></script>
+  <script src="./src/js/blur.js"></script>
+  <script src="./src/js/controlPanel.js"></script>
+
+  <script src="./src/js/WindowManager.js"></script>   <!-- SCRIPT: Gestion complète des fenêtres + fonction debug_show_controlpanel() -->
+
+
+
+</head>
+<body>
+  <!-- ================= WINDOWS XP ================= -->
+  <div class="winxp" style="background: transparent;">
+    <!-- Fenêtre messagebox -->
+    <div class="window messagebox" id="AlreadyOpenedError">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/window.gif" alt="icone"> WindowManager - Error
+        </div>
+        <div class="title-bar-controls"><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body">
+        <div class="content">
+          <div class="image-container"><img src="./img/1466.ico" alt="Clippy"></div>
+          <div class="text-container"><p>This window is Already Opened</p></div>
+        </div>
+        <div class="button-container"><button>OK</button></div>
+      </div>
+    </div>
+
+    <!-- popups -->
+    <div class="window" id="popup1">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/window.gif" alt="icone">
+          Clippy.js - Welkom !
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="img-left">
+          <img src="./img/clippy.png" alt="Clippy">
+          <div>
+            <p>Hello Dear Visitor !</p>
+            <br>
+            <p>It appears it's your first time here, Welcome !</p>
+            <br>
+            <p>Do you wish for a small tour ?</p>
+          </div>
+        </div>
+        <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
+          <button id="sure1">SURE</button>
+          <button>Not my first rodeo here !</button>
+        </section>
+      </div>
+    </div>
+
+    <div class="window" id="popup2">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/window.gif" alt="icone">
+          Clippy.js - Me !
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="img-left">
+          <img src="./img/me.png" alt="Me ( i did this, i am proud )">
+          <div>
+            <p>I'm Elias (Elxss), a third-year Computer Science student.</p>
+            <br>
+            <p>I am passionate about <strong>Cybersecurity</strong> and hope to pursue further studies in this field.</p>
+          </div>
+        </div>
+        <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
+          <button id="prev2">Previous</button>
+          <button id="next2">Next =></button>
+        </section>
+      </div>
+    </div>
+
+    <div class="window" id="popup3">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/window.gif" alt="icone">
+          Clippy.js - This page :)
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="img-left">
+          <div>
+            <p>This page is my <strong>portfolio</strong>.</p>
+            <br>
+            <p>This is a <strong>TV</strong> and <strong>YOU have the controller</strong>! Change the channel and see what's on.</p>
+            <br>
+            <p>Each channel has its own content. This TV is a <strong>JavaScript module : <code>Television.js</code></strong>.</p>
+            <p>Accompanied by <strong><code>MdInterpreter.js</code></strong>, it interprets <code>README.md</code> files from all my projects and brings them to life.</p>
+          </div>
+        </div>
+        <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
+          <button id="prev3">Previous</button>
+        </section>
+      </div>
+    </div>
+
+    <!-- Fenêtre Control Panel -->
+    <div class="window panel" id="control-panel">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/418.ico" alt="icone"> Control Panel - WindowManager.js
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="content-wrapper">
+
+          <!-- Custom header -->
+          <div class="cstm-header">
+            <div class="header-item dropdown">
+              <a href="#">? ▼</a>
+              <div class="dropdown">
+                <a href="#"><img src="./img/coin.png" style="margin-top: -2px;"> Credits</a>
+                <a href="#">Check out older versions !</a>
+                <a class="separator" href="#"></a>
+                <a href="#"><img src="./img/horse.png" style="margin-top: 2px; margin-right: 8px;">Quit</a>
+              </div>
+            </div>
+  
+            <div class="header-item separator"><a href="#">GRR</a></div>
+            <div class="header-item"><a href="#">KEIN</a></div>
+          </div>
+  
+          <!-- Ligne violette -->
+          <div class="header-row">
+            <a href="#" class="winxp-style adresse-btn" style="font-style: italic; color: gray; opacity: 0.8;">
+              Address
+            </a>
+  
+            <select class="disabled" style="flex:1 1 auto; min-width:0; margin:0; padding:0 4px;">
+              <option><img src="./img/386.ico" alt="Item 1">Control Panel</option>
+            </select>
+  
+            <a href="#" class="OK_BTN">
+              <img src="./img/shell32_290.ico" alt="Icone">
+              OK
+            </a>
+          </div>
+  
+          <!-- Colonnes Bleu et Rouge -->
+          <div class="columns">
+  
+            <!-- Colonne gauche -->
+            <div class="left-column">
+              <div class="see-also">
+                <div class="see-also-header" onclick="toggleSeeAlso(this)">
+                  <span>See Also</span>
+                  <span class="toggle-arrow">▼</span>
+                </div>
+                <div class="see-also-content" style="display: block;">
+                  <a class="see-also-item" href="https://youtube.com/" target="_blank"><img src="./img/317.ico" alt="Youtube" ><span>Youtube</span></a>
+                  <a class="see-also-item" href="https://youtube.com/" target="_blank"><img src="./img/1481.ico" alt="Github"><span>Github</span></a>
+                  <a class="see-also-item" href="https://youtube.com/" target="_blank"><img src="./img/1481.ico" alt="Discord"><span>Discord</span></a>
+                  <a class="see-also-item" href="https://youtube.com/" target="_blank"><img src="./img/1481.ico" alt="Email"><span>Email</span></a>
+                  <a class="see-also-item" href="https://github.com/Elxss/Elxss.github.io/issues" target="_blank"><img src="./img/324.ico" alt="Report an Issue" class="question-mark"><span style="text-decoration: underline;" class="question-mark">Report an Issue</span></a>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Colonne droite -->
+            <div class="right-column">
+              <div class="right-column-grid" id="control-panel-grid">
+  
+                <div class="right-column-grid-item" data-action="openCredits">
+                  <div class="img-container"><img src="./img/100.ico" alt="Item 1"></div>
+                  <span>Change Language</span>
+                </div>
+                
+                <div class="right-column-grid-item">
+                  <div class="img-container"><img src="./img/295.ico" alt="Item 2"></div>
+                  <span>Manage Theme</span>
+                </div>
+  
+                <div class="right-column-grid-item">
+                  <div class="img-container"><img src="./img/258.ico" alt="Item 3"></div>
+                  <span>Reset Stored Cookie</span>
+                </div>
+  
+                <div class="right-column-grid-item">
+                  <div class="img-container"><img src="./img/moricons_61.ico" alt="Item 4"></div>
+                  <span>Manage Analytics Choices</span>
+                </div>
+  
+                <div class="right-column-grid-item">
+                  <div class="img-container"><img src="./img/386.ico" alt="Item 5"></div>
+                  <span>PING PONG WINDOWS !</span>
+                </div>
+  
+                <div class="right-column-grid-item" data-action="StarThisRepo">
+                  <div class="img-container"><img src="./img/star-spinning.gif" alt="Item 6"></div>
+                  <span>Star This Repo</span>
+                </div>
+  
+                <div class="right-column-grid-item" data-action="MdInterpreterRepo">
+                  <div class="img-container"><img src="./img/26.ico" alt="Item 7"></div>
+                  <span>MdInterpreter.js Repo</span>
+                </div>
+  
+                <div class="right-column-grid-item">
+                  <div class="img-container"><img src="./img/42.ico" alt="Item 8"></div>
+                  <span>GET THIS BRANCH OF WINXP CSS !</span>
+                </div>
+  
+                <div class="right-column-grid-item" data-action="PlayCustomVideoTeleveision">
+                  <div class="img-container"><img src="./img/181.ico" alt="Item 9"></div>
+                  <span>Play Custom Video On Televeision</span>
+                </div>
+  
+                <div class="right-column-grid-item" data-action="PlayCustomMDTeleveision">
+                  <div class="img-container"><img src="./img/210.ico" alt="Item 10"></div>
+                  <span>Play Custom MD File on Televeision</span>
+                </div>
+  
+                <div class="right-column-grid-item" data-action="getStandardResume">
+                  <div class="img-container"><img src="./img/12.ico" alt="Item 11"></div>
+                  <span>Get my more Standard Resume</span>
+                </div>
+  
+                <div class="right-column-grid-item" data-action="openCredits">
+                  <div class="img-container"><img src="./img/coin.png" alt="Item 12"></div>
+                  <span>Credits</span>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <div class="status-bar">
+        <p class="status-bar-field" id="control-panel-items">0 item(s)</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= TELEVISION ================= -->
+  <div class="television-support">
+    <!-- Grille d’icônes Télé -->
+    <div class="desktop-grid">
+      <div class="clickable-item-win desktop-icons" data-action="openControlPanel" style="grid-column:2; grid-row:3;">
+        <div class="item-inner">
+          <div class="img-container"><img src="./img/26.ico" alt="Item 7"></div>
+          <span>MdInterpreter.js Repo</span>
+        </div>
+      </div>
+      <div class="clickable-item-win desktop-icons" data-action="openCredits" style="grid-column:4; grid-row:1;">
+        <div class="item-inner">
+          <div class="img-container"><img src="./img/coin.png" alt="Credits"></div>
+          <span>Credits</span>
+        </div>
+      </div>
+      <div class="clickable-item-win desktop-icons" data-action="StarThisRepo" style="grid-column:7; grid-row:4;">
+        <div class="item-inner">
+          <div class="img-container"><img src="./img/star-spinning.gif" alt="Credits"></div>
+          <span>Star This Repo !</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vidéo -->
+    <div class="video-container">
+      <video id="backgroundVideo" class="background-video" autoplay loop playsinline muted>
+        <source id="videoSource" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="main-box"></div>
+    <div class="overlay"></div>
+
+    <!-- Infos chaînes -->
+    <div class="ch ch_bottom_right">
+      <h1><span id="blurred">BLURRED</span></h1>
+      <h1><span id="muted">MUTED</span> <span id="vol">VOLUME : [<span id="vol_bar">|||||--------------</span>]</span></h1>
+      <h1><span id="played_time">00:00:00</span> / <span id="total_time">00:00:00</span></h1>
+    </div>
+    <div class="ch ch_top_right"><h1 id="today_date"></h1></div>
+    <div class="ch ch_bottom_left">
+      <h1>CHANNEL NUMBER : <span id="channel">0</span></h1>
+      <h1>DISCOVERED CHANNELS : <span id="max_channels">0</span></h1>
+    </div>
+    <div class="ch ch_top_left">
+      <h1>VID SOURCE: <a id="background_video_title">aaaa</a></h1>
+      <h1>CHANNEL TITLE : <span id="ch_title"></span></h1>
+    </div>
+
+    <img src="./src/img/elxss.gif" alt="Logo" id="logo" class="logo">
+
+    <!-- Contenu principal Télé -->
+    <div class="content" id="force_css">
+      <div id="ch0" class="bottom-align">
+        
+        <h1>200 Alive</h1>
+        <h2>a Student in IT</h2>
+        <h2>Fast Links</h2>
+        <div class="links">
+          <a href="https://youtube.com" target="_blank">Youtube</a>
+          <span class="separator">|</span>
+          <a href="https://github.com" target="_blank">Github</a>
+          <span class="separator">|</span>
+          <a href="https://discord.com" target="_blank">Discord</a>
+          <span class="separator">|</span>
+          <a href="https://example.com/pgp-key" target="_blank">PGP Key</a>
+          <span class="separator">|</span>
+          <a href="mailto:example@example.com" target="_blank">Email</a>
+        </div>
+        <h2>This page is my portfolio. Use the Controller to switch slides</h2>
+        <footer>DMCA notices? Please be free to take down the content from YouTube</footer>
+      </div>
+    </div>
+
+    <!-- Télécommande -->
+    <div class="bottom-left-rectangle">
+      <div class="remote-wrapper">
+        <div class="remote">
+<!-- Ligne Power / Mute centrée -->
+            <div style="grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center; align-items: center; gap:10px;">
+              <button id="power_remote">ON</button>
+              <div></div> <!-- espace central -->
+              <button id="mute_remote">MUTE</button>
+            </div>
+          
+            <div class="spacer_remote"></div>
+          
+            <!-- Chiffres -->
+            <button class="num">1</button><button class="num">2</button><button class="num">3</button>
+            <button class="num">4</button><button class="num">5</button><button class="num">6</button>
+            <button class="num">7</button><button class="num">8</button><button class="num">9</button>
+            <div></div><button class="num">0</button><div></div>
+          
+            <div class="spacer_remote"></div>
+            
+          
+            <!-- VOL -->
+            <div class="vol_remote">
+              <div class="half_remote top_remote">+</div>
+              <div class="half_remote bottom_remote">−</div>
+              <div class="label_remote">VOL</div>
+            </div>
+            <div></div>
+            <!-- CH -->
+            <div class="ch_remote">
+              <div class="half_remote top_remote">+</div>
+              <div class="half_remote bottom_remote">−</div>
+              <div class="label_remote">CH</div>
+            </div>
+          
+            <div class="spacer_remote"></div>
+          
+            <!-- Zone texte ou image -->
+            <div class="remote-footer_remote">
+              <div class="video-buttons">
+                <button id="disable-video">Disable Video</button>
+                <button id="toggle-blur">LET ME ENJOY THE VIDEO</button>
+              </div>
+              <div class="spacer_remote"></div>
+              <!-- Exemple avec image -->
+              <img src="./src/img/tvremote.gif" alt="Logo">
+              <img src="./src/img/text.gif" alt="Logo">
+              <img src="./src/img/last_updated.gif" alt="Logo">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+</html>
