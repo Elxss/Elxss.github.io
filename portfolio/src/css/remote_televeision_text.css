@@ -1,0 +1,12 @@
+#muted {
+    color: red;
+}
+
+#blurred {
+    color: blue;
+}
+
+.window {
+    position: relative;   /* ou fixed si tu veux qu’elle reste visible */
+    z-index: 10;          /* Toujours devant les autres éléments */
+}

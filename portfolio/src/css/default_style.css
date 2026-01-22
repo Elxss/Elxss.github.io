@@ -1,0 +1,289 @@
+/* =========================
+   Full-screen Television CSS
+   ========================= */
+
+   
+    .television-support .content {
+        font-family: monospace !important;
+    }
+
+   .television-support {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'VT323', monospace !important;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Hide extra channels */
+.television-support .hide_when_loaded_channel {
+    display: none;
+}
+
+/* Video */
+.television-support .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.television-support .background-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    z-index: -2;
+    background-color: black;
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.television-support .background-video.blur {
+    filter: blur(10px);
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Overlay blur */
+.television-support .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    z-index: -1;
+    filter: blur(10px) brightness(1);
+}
+
+/* Main content box */
+.television-support .main-box {
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    height: 100%;
+    object-fit: contain;
+    z-index: -1;
+}
+
+@media (max-width: 1000px) {
+    .television-support .main-box {
+        left: 0;
+        right: 0;
+        width: 100vw;
+    }
+}
+
+/* Logo */
+.television-support .logo {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+    height: auto;
+    z-index: 1;
+}
+
+/* Channel info (CH) */
+.television-support .ch {
+    position: fixed;
+    font-size: 90%;
+    font-style: italic;
+    font-weight: bold;
+    color: rgba(255,255,255,0.63);
+    width: 40%;
+    letter-spacing: -0.05em;
+}
+
+.television-support .ch_bottom_left { bottom: 10%; left: 20%; text-align: left; }
+.television-support .ch_top_left { top: 5%; left: 20%; text-align: left; }
+.television-support .ch_bottom_right { bottom: 10%; right: 20%; text-align: right; }
+.television-support .ch_top_right { top: 5%; right: 20%; text-align: right; }
+
+@media (max-width: 1000px) {
+    .television-support .ch_bottom_left,
+    .television-support .ch_top_left { left: 5%; }
+    .television-support .ch_bottom_right,
+    .television-support .ch_top_right { right: 5%; }
+}
+
+/* Channel text */
+.television-support h1, .television-support h2 {
+    margin: 2px 0;
+}
+
+/* Content */
+.television-support .content {
+    margin: 80px 20% 5% 20%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    background-color: #6476d5;
+}
+
+.television-support .links {
+    margin: 10px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.television-support .links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.television-support .links a:hover {
+    transform: scale(1.2);
+    font-size: 110%;
+    font-style: italic;
+}
+
+.television-support .links a::before {
+    content: "";
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    z-index: -1;
+}
+
+.television-support .links:hover a {
+    animation: tremble 0.3s infinite;
+}
+
+@keyframes tremble {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.television-support .separator {
+    margin: 0 10px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Desktop grid */
+.television-support .desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 100px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: transparent;
+    pointer-events: none; /* la grille elle-même ne bloque rien */
+}
+
+/* Desktop icons */
+.television-support .desktop-grid .clickable-item-win {
+    pointer-events: auto; /* les icônes sont cliquables */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px;
+    box-sizing: border-box;
+    height: 100%;
+    transition: color 0.2s, outline 0.2s;
+}
+
+.television-support .desktop-grid .clickable-item-win:hover span {
+    color: blue;
+}
+
+.television-support .desktop-grid .clickable-item-win.selected {
+    outline: 1px dotted blue;
+}
+
+.television-support .desktop-grid .clickable-item-win.selected span {
+    color: white;
+    background-color: #6476d5;
+}
+
+.television-support .desktop-grid .clickable-item-win .img-container {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.television-support .desktop-grid .clickable-item-win img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.television-support .desktop-grid .clickable-item-win span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+/* Bottom-left remote panel */
+.television-support .bottom-left-rectangle {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    z-index: 3;
+
+}
+
+/* Muted / Volume toggles */
+.television-support #muted { display: none; color: red; font-weight: bold; font-style: italic; }
+.television-support #muted.active { display: block; }
+.television-support #vol { display: none; }
+.television-support #vol.active { display: block; }
+
+/* Fonts */
+@font-face {
+    font-family: 'Nokian';
+    src: url('../font/Nokian.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'VT323';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../font/VT323.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

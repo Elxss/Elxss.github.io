@@ -1,0 +1,36 @@
+[
+    { "id": 0, "title": "CFG HARD CODED IN JS !", "videoTitle": "CFG HARD CODED IN JS ! index 0, if you touch this nothing will happen haha" },
+    { "id": 1, "title": "CHANNEL 1 - Summary !", "videoTitle": "Windows XP Startup", "markdown": "https://raw.githubusercontent.com/Elxss/Image-Captcha-Solver/main/README.md"},
+    {
+        "id": 2,
+        "title": "CHANNEL 2 - PORTFOLIO",
+        "markdown": "https://raw.githubusercontent.com/Elxss/MegaUp.net-Auto-Downloader/refs/heads/main/README.md",
+        "videoTitle": "Portfolio Background",
+        "videoLink": "https://github.com/Elxss/Image-Captcha-Solver",
+        "videoSource": "./assets/vhs2.mp4"
+    },
+    {
+        "id": 3,
+        "title": "CHANNEL 3 - README",
+        "markdown": "https://raw.githubusercontent.com/Elxss/Image-Captcha-Solver/main/README.md",
+        "videoTitle": "Project Readme",
+        "videoLink": "https://github.com/Elxss/Image-Captcha-Solver",
+        "videoSource": "./assets/vhs3.mp4"
+    },
+    {
+        "id": 4,
+        "title": "CHANNEL 4 - README",
+        "markdown": "https://raw.githubusercontent.com/Elxss/MegaUp.net-Auto-Downloader/refs/heads/main/README.md",
+        "videoTitle": "Project Readme",
+        "videoLink": "https://github.com/Elxss/Image-Captcha-Solver",
+        "videoSource": "./assets/vhs3.mp4"
+    },
+    {
+        "id": 5,
+        "title": "CHANNEL 5 - README",
+        "markdown": "https://raw.githubusercontent.com/Elxss/MegaUp.net-Auto-Downloader/refs/heads/main/README.md",
+        "videoTitle": "Project Readme",
+        "videoLink": "https://github.com/Elxss/Image-Captcha-Solver",
+        "videoSource": "./assets/vhs3.mp4"
+    }
+]

@@ -1,0 +1,98 @@
+.question-mark {
+    cursor: help; /* change le curseur en point d'interrogation */
+  }
+  
+  
+              .cstm-header {
+                  width: 100%;
+                  display: flex;
+                  border-bottom: 1px solid #c6c3b4;
+                  background-color: #ddd;
+                  box-sizing: border-box;
+                }
+                
+                .header-item {
+                  position: relative;
+                  display: flex;
+                  align-items: stretch;   /* étire les <a> sur toute la hauteur du header */
+                  margin-right: 0;        /* plus de gap externe */
+                }
+                
+                .header-item + .header-item {
+                  margin-left: 2px;       /* espace minime entre boutons si tu veux un léger séparateur */
+                }
+                
+                .header-item a {
+                  flex: 1 1 auto;         
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  text-decoration: none;
+                  color: black;
+                  width: 100%;
+                  height: 100%;           /* prend toute la hauteur du header */
+                  padding: 4px 8px;       /* padding interne pour le texte */
+                  box-sizing: border-box;
+                }
+                
+                .header-item a:hover {
+                  background-color: blue;
+                  color: white;
+                }
+                
+                /* barre verticale */
+                .header-item.separator::after {
+                  content: "";
+                  display: inline-block;
+                  width: 1px;
+                  background-color: #c6c3b4;
+                  margin: 0 4px;       /* s'arrête avant le bord */
+                  height: 60%;
+                  align-self: center;
+                }
+                
+                /* dropdown */
+                .header-item .dropdown {
+                  display: none;
+                  position: absolute;
+                  top: 100%;
+                  left: 0;
+                  background-color: #ddd;
+                  min-width: 150px;
+                  flex-direction: column;
+                  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                  z-index: 1000;
+                }
+                
+                .header-item .dropdown a {
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-start;
+                  padding: 4px 8px;
+                  text-decoration: none;
+                  color: black;
+                }
+                
+                .header-item .dropdown a img {
+                  max-height: 2em;
+                  width: auto;
+                  vertical-align: middle;
+                  margin-right: 4px;
+                }
+                
+                .header-item .dropdown a:hover {
+                  background-color: blue;
+                  color: white;
+                }
+                
+                /* séparateur dans dropdown */
+                .header-item .dropdown a.separator {
+                  display: block;
+                  height: 1px;
+                  width: calc(100% - 8px);
+                  margin: 4px 4px;
+                  background-color: #c6c3b4;
+                  pointer-events: none;
+                  padding: 0;
+                }
+                
