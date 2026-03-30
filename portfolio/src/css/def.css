@@ -256,6 +256,8 @@ align-items: center; /* Centre verticalement les éléments */
     padding: 10px;
     border-radius: 5px;
     z-index: 3;
+    max-height: calc(90vh - 40px);
+    overflow-y: auto;
 }
 
 /* ---------------- FONTS ---------------- */

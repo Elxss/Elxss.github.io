@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elxss's portfolio</title>
 
+  <!-- Open Graph / Social Media Embed -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://elxss.me/portfolio/">
+  <meta property="og:title"       content="Elxss's Portfolio">
+  <meta property="og:description" content="Interactive portfolio by Elias (Elxss) — Computer Science student passionate about Cybersecurity. Navigate channels with a TV remote to explore my projects.">
+  <meta property="og:image"       content="https://elxss.me/portfolio/img/preview.png">
+  <meta property="og:image:width"  content="1280">
+  <meta property="og:image:height" content="720">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Elxss's Portfolio">
+  <meta name="twitter:description" content="Interactive portfolio by Elias (Elxss) — Computer Science student passionate about Cybersecurity. Navigate channels with a TV remote to explore my projects.">
+  <meta name="twitter:image"       content="https://elxss.me/portfolio/img/preview.png">
+
   <link rel="icon" type="image/png" href="../images/icon1.ico" id="icon">
 
   <!-- Styles -->
@@ -78,13 +93,13 @@
           </div>
         </div>
         <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
-          <button id="sure1">SURE</button>
           <button>Not my first rodeo here !</button>
+          <button id="sure1">SURE</button>
         </section>
       </div>
     </div>
 
-    <div class="window" id="popup2">
+    <div class="window" id="popup2" style="display:none;">
       <div class="title-bar">
         <div class="title-bar-text">
           <img src="./img/window.gif" alt="icone">
@@ -112,7 +127,7 @@
       </div>
     </div>
 
-    <div class="window" id="popup3">
+    <div class="window" id="popup3" style="display:none;">
       <div class="title-bar">
         <div class="title-bar-text">
           <img src="./img/window.gif" alt="icone">
@@ -137,6 +152,47 @@
         </div>
         <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
           <button id="prev3">Previous</button>
+          <button id="close3">Close</button>
+        </section>
+      </div>
+    </div>
+
+    <!-- Dialog : Play Custom MD -->
+    <div class="window" id="dialog-custom-md" style="display:none; min-width:380px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/window.gif" alt="icone"> Play Custom MD on Televeision
+        </div>
+        <div class="title-bar-controls"><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body" style="padding: 12px; gap: 8px;">
+        <p>Enter the URL of a Markdown file :</p>
+        <div class="field-row" style="margin-top:6px;">
+          <input id="input-custom-md" type="text" placeholder="https://raw.githubusercontent.com/..." style="width:100%; box-sizing:border-box;">
+        </div>
+        <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
+          <button id="ok-custom-md">OK</button>
+          <button id="cancel-custom-md">Cancel</button>
+        </section>
+      </div>
+    </div>
+
+    <!-- Dialog : Play Custom Video -->
+    <div class="window" id="dialog-custom-video" style="display:none; min-width:380px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <img src="./img/window.gif" alt="icone"> Play Custom Video on Televeision
+        </div>
+        <div class="title-bar-controls"><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body" style="padding: 12px; gap: 8px;">
+        <p>Enter the URL of a video file (mp4, webm, mov...) :</p>
+        <div class="field-row" style="margin-top:6px;">
+          <input id="input-custom-video" type="text" placeholder="https://example.com/video.mp4" style="width:100%; box-sizing:border-box;">
+        </div>
+        <section class="field-row" style="justify-content: flex-end; margin-top: 12px;">
+          <button id="ok-custom-video">OK</button>
+          <button id="cancel-custom-video">Cancel</button>
         </section>
       </div>
     </div>
