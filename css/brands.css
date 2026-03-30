@@ -443,7 +443,9 @@ button:hover,
 /* LinkedIn */
 .button.button-linked {
   color: #ffffff;
-  background-color: #2867b2;
+  background-color: #000000;
+  border: 1px solid #0a66c2;
+  box-sizing: border-box;
 }
 .button.button-linked:hover,
 .button.button-linked:focus {
