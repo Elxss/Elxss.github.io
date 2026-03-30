@@ -169,16 +169,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // ===== DOUBLE-CLIC ICONES BUREAU =====
 
     // ===== TOUR POPUPS =====
+    const TOUR_COOKIE = "elxss_tour_seen";
+
     const popup1 = document.getElementById("popup1");
     const popup2 = document.getElementById("popup2");
     const popup3 = document.getElementById("popup3");
 
     let tourPos = null; // position partagée par les 3 popups
 
+    function setTourSeen() {
+      localStorage.setItem(TOUR_COOKIE, "1");
+      console.log("[WindowManager.js] Tour marked as seen — writing to localStorage");
+    }
+
     function showPopup(win) {
       if (!win) return;
       win.style.display = "";
-      // Calculer la position une seule fois au premier affichage
       if (!tourPos) {
         const coords = randomOffsetFromCenter(20);
         tourPos = coords;
@@ -190,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
       win.style.zIndex = zIndexCounter;
     }
 
-    // popup1 : "SURE" => popup2, "Not my first rodeo" => fermer
+    // popup1 : "SURE" => popup2, "Not my first rodeo" => fermer + cookie
     const btnSure1 = document.getElementById("sure1");
     if (btnSure1) {
       btnSure1.addEventListener("click", () => {
@@ -198,9 +204,13 @@ document.addEventListener("DOMContentLoaded", () => {
         showPopup(popup2);
       });
     }
-    const btnNoTour = popup1 && popup1.querySelector(".field-row button:last-child");
+    const btnNoTour = popup1 && popup1.querySelector(".field-row button:first-child");
     if (btnNoTour) {
-      btnNoTour.addEventListener("click", () => { popup1.style.display = "none"; });
+      btnNoTour.addEventListener("click", () => {
+        popup1.style.display = "none";
+        setTourSeen();
+        console.log("[WindowManager.js] User skipped the tour — no explanations next time");
+      });
     }
 
     // popup2 : prev => popup1, next => popup3
@@ -219,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // popup3 : prev => popup2, close => fermer
+    // popup3 : prev => popup2, close => fermer + cookie
     const btnPrev3 = document.getElementById("prev3");
     if (btnPrev3) {
       btnPrev3.addEventListener("click", () => {
@@ -229,11 +239,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const btnClose3 = document.getElementById("close3");
     if (btnClose3) {
-      btnClose3.addEventListener("click", () => { popup3.style.display = "none"; });
+      btnClose3.addEventListener("click", () => {
+        popup3.style.display = "none";
+        setTourSeen();
+        console.log("[WindowManager.js] Tour completed — visitor won't be bothered again");
+      });
     }
 
-    // Afficher popup1 au démarrage
-    if (popup1) showPopup(popup1);
+    // Afficher popup1 au démarrage uniquement si pas déjà vu
+    if (localStorage.getItem(TOUR_COOKIE)) {
+      console.log("[WindowManager.js] Cookie detected — no explanations for this visitor");
+    } else {
+      console.log("[WindowManager.js] First visit detected — starting tour");
+      if (popup1) showPopup(popup1);
+    }
 
     // ===== DEBUG CONSOLE =====
     window.debug_show_controlpanel = function() {
