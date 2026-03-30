@@ -96,13 +96,13 @@
   grid-column: span 3;
   text-align: center;
   margin-top: 15px;
-  overflow: visible; /* pour permettre aux gifs de dépasser légèrement */
+  overflow: hidden;
 }
 
-/* Taille plus grande des gifs */
+/* Gifs du footer */
 .remote-footer_remote img {
-  max-width: 200px;  /* plus grand que la largeur de la télécommande */
-  width: 80%;        /* s’adapte à la zone footer */
+  max-width: 100%;
+  width: 80%;
   height: auto;
   display: block;
   margin: 5px auto;

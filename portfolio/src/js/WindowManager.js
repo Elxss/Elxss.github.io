@@ -168,6 +168,73 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // ===== DOUBLE-CLIC ICONES BUREAU =====
 
+    // ===== TOUR POPUPS =====
+    const popup1 = document.getElementById("popup1");
+    const popup2 = document.getElementById("popup2");
+    const popup3 = document.getElementById("popup3");
+
+    let tourPos = null; // position partagée par les 3 popups
+
+    function showPopup(win) {
+      if (!win) return;
+      win.style.display = "";
+      // Calculer la position une seule fois au premier affichage
+      if (!tourPos) {
+        const coords = randomOffsetFromCenter(20);
+        tourPos = coords;
+      }
+      win.style.position = "absolute";
+      win.style.left = `calc(${tourPos.x}px - ${win.offsetWidth / 2}px)`;
+      win.style.top = `calc(${tourPos.y}px - ${win.offsetHeight / 2}px)`;
+      zIndexCounter++;
+      win.style.zIndex = zIndexCounter;
+    }
+
+    // popup1 : "SURE" => popup2, "Not my first rodeo" => fermer
+    const btnSure1 = document.getElementById("sure1");
+    if (btnSure1) {
+      btnSure1.addEventListener("click", () => {
+        popup1.style.display = "none";
+        showPopup(popup2);
+      });
+    }
+    const btnNoTour = popup1 && popup1.querySelector(".field-row button:last-child");
+    if (btnNoTour) {
+      btnNoTour.addEventListener("click", () => { popup1.style.display = "none"; });
+    }
+
+    // popup2 : prev => popup1, next => popup3
+    const btnPrev2 = document.getElementById("prev2");
+    const btnNext2 = document.getElementById("next2");
+    if (btnPrev2) {
+      btnPrev2.addEventListener("click", () => {
+        popup2.style.display = "none";
+        showPopup(popup1);
+      });
+    }
+    if (btnNext2) {
+      btnNext2.addEventListener("click", () => {
+        popup2.style.display = "none";
+        showPopup(popup3);
+      });
+    }
+
+    // popup3 : prev => popup2, close => fermer
+    const btnPrev3 = document.getElementById("prev3");
+    if (btnPrev3) {
+      btnPrev3.addEventListener("click", () => {
+        popup3.style.display = "none";
+        showPopup(popup2);
+      });
+    }
+    const btnClose3 = document.getElementById("close3");
+    if (btnClose3) {
+      btnClose3.addEventListener("click", () => { popup3.style.display = "none"; });
+    }
+
+    // Afficher popup1 au démarrage
+    if (popup1) showPopup(popup1);
+
     // ===== DEBUG CONSOLE =====
     window.debug_show_controlpanel = function() {
       console.log("🧩 Debug: ouverture du Control Panel depuis DevTools");
@@ -247,11 +314,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const actions = {
         MdInterpreterRepo: () => { openLinkBlank('https://www.youtube.com/'); },
         StarThisRepo: () => { openLinkStarRepo() },
-        PlayCustomVideoTeleveision: () => { openLinkGithub() },
-        PlayCustomMDTeleveision: () => { openLinkGithub() },
+        PlayCustomVideoTeleveision: () => { openCustomDialog('video') },
+        PlayCustomMDTeleveision: () => { openCustomDialog('md') },
         getStandardResume: () => { openLinkGithub() },
         openCredits: () => { openLinkGithub() },
-        
       };
 
       items.forEach(item => {
@@ -286,5 +352,59 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.header-item.dropdown .dropdown').forEach(drop => {
           if (!drop.parentElement.contains(e.target)) drop.style.display = 'none';
         });
+      });
+
+      // ===== DIALOGS CUSTOM MD / VIDEO =====
+      const dialogMD = document.getElementById('dialog-custom-md');
+      const dialogVideo = document.getElementById('dialog-custom-video');
+
+      window.openCustomDialog = function(type) {
+        const win = type === 'md' ? dialogMD : dialogVideo;
+        if (!win) return;
+        win.style.display = '';
+        // centré à l'écran
+        win.style.position = 'absolute';
+        win.style.left = `calc(50vw - ${win.offsetWidth / 2}px)`;
+        win.style.top = `calc(50vh - ${win.offsetHeight / 2}px)`;
+        zIndexCounter++;
+        win.style.zIndex = zIndexCounter;
+        const input = win.querySelector('input');
+        if (input) { input.value = ''; input.focus(); }
+      };
+
+      // Câblage dialog MD
+      document.getElementById('ok-custom-md').addEventListener('click', () => {
+        const url = document.getElementById('input-custom-md').value.trim();
+        if (!url) return;
+        dialogMD.style.display = 'none';
+        if (window.televeision_playCustomMD) window.televeision_playCustomMD(url);
+      });
+      document.getElementById('cancel-custom-md').addEventListener('click', () => {
+        dialogMD.style.display = 'none';
+      });
+      dialogMD.querySelector('.title-bar-controls button').addEventListener('click', () => {
+        dialogMD.style.display = 'none';
+      });
+
+      // Câblage dialog Video
+      document.getElementById('ok-custom-video').addEventListener('click', () => {
+        const url = document.getElementById('input-custom-video').value.trim();
+        if (!url) return;
+        dialogVideo.style.display = 'none';
+        if (window.televeision_playCustomVideo) window.televeision_playCustomVideo(url);
+      });
+      document.getElementById('cancel-custom-video').addEventListener('click', () => {
+        dialogVideo.style.display = 'none';
+      });
+      dialogVideo.querySelector('.title-bar-controls button').addEventListener('click', () => {
+        dialogVideo.style.display = 'none';
+      });
+
+      // Soumettre avec Entrée
+      document.getElementById('input-custom-md').addEventListener('keydown', e => {
+        if (e.key === 'Enter') document.getElementById('ok-custom-md').click();
+      });
+      document.getElementById('input-custom-video').addEventListener('keydown', e => {
+        if (e.key === 'Enter') document.getElementById('ok-custom-video').click();
       });
     });

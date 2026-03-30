@@ -367,4 +367,43 @@ document.addEventListener("DOMContentLoaded", async () => {
     // and voila
     startBlinking();
     changeVideoSource(0);
+
+    // ===== CUSTOM CHANNEL (MD / VIDEO) =====
+    let customChannelIndex = null;
+
+    function ensureCustomChannel() {
+        if (customChannelIndex === null) {
+            customChannelIndex = ChannelVideoSource.length;
+            ChannelTitle.push("CUSTOM");
+            ChannelVideoTitle.push(["Custom", "#"]);
+            ChannelVideoSource.push(ChannelVideoSource[0]);
+            createChannelContainers(ChannelVideoSource.length);
+            maxChannels.innerText = ChannelVideoSource.length - 1;
+        }
+    }
+
+    window.televeision_playCustomVideo = function(videoUrl) {
+        ensureCustomChannel();
+        ChannelVideoSource[customChannelIndex] = videoUrl;
+        ChannelTitle[customChannelIndex] = "CUSTOM - Video";
+        ChannelVideoTitle[customChannelIndex] = ["Custom Video", videoUrl];
+        const chElem = document.getElementById(`ch${customChannelIndex}`);
+        if (chElem) chElem.innerHTML = "<p>▶ Playing custom video</p>";
+        ChannelVideoIndex = customChannelIndex;
+        changeVideoSource(customChannelIndex);
+    };
+
+    window.televeision_playCustomMD = async function(mdUrl) {
+        ensureCustomChannel();
+        ChannelTitle[customChannelIndex] = "CUSTOM - Markdown";
+        ChannelVideoTitle[customChannelIndex] = ["Custom MD", mdUrl];
+        ChannelVideoSource[customChannelIndex] = ChannelVideoSource[0];
+        const chElem = document.getElementById(`ch${customChannelIndex}`);
+        if (chElem) {
+            chElem.innerHTML = "<p>Loading...</p>";
+            chElem.innerHTML = await loadMarkdownAsHTML(mdUrl);
+        }
+        ChannelVideoIndex = customChannelIndex;
+        changeVideoSource(customChannelIndex);
+    };
 });
