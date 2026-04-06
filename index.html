@@ -52,6 +52,11 @@
     <link rel="stylesheet" href="css/brands.css">
 
 
+  <!-- Analytics
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script data-goatcounter="https://elxss.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/icon1.ico" id="icon">
@@ -59,6 +64,31 @@
 </head>
 
 <body>
+
+  <!--
+    "The only truly secure system is one that is powered off, cast in a block of concrete
+    and sealed in a lead-lined room with armed guards - and even then I have my doubts."
+    ― Gene Spafford
+  -->
+
+  <!--
+  <div id="consent-badge" role="dialog" aria-label="Cookie consent" style="display:none">
+    <p>This site uses analytics to improve the experience. No data is sold or shared. <a href="privacy.html">Privacy policy</a></p>
+    <div id="consent-actions">
+      <button id="consent-decline" aria-label="Dismiss">✕</button>
+      <button id="consent-accept">Accept</button>
+    </div>
+  </div>
+  -->
+
+  <!--
+  <div id="loading-screen">
+    <div id="loading-inner">
+      <div id="loading-quote">"The only truly secure system is one that is powered off, cast in a block of concrete and sealed in a lead-lined room with armed guards — and even then I have my doubts."</div>
+      <div id="loading-author">Gene Spafford</div>
+    </div>
+  </div>
+  -->
 
   <!-- DarkVeil WebGL Background
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -102,6 +132,7 @@
             <p>I'm <i><strong>Elias</strong></i>, French Student in Computer Science</p>
             <p><img class="icon icon-right icon-bottom" src="images/icons/fax.ico" title="What's this ?" alt="What's this Icon">this page is a <a href="https://github.com/Elxss/Elxss.github.io" target="_blank" rel="noopener">Little Link Fork</a> that totals all my links and projects :)</p>
         </div>
+
         
         <!--
 
@@ -591,7 +622,40 @@
 
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    
+
+  <!--
+  <script>
+    var screen = document.getElementById('loading-screen');
+    screen.addEventListener('animationend', function (e) {
+      if (e.animationName === 'splashOut') {
+        screen.style.display = 'none';
+        document.getElementById('fade-in').classList.add('visible');
+      }
+    });
+
+    (function () {
+      var consent = localStorage.getItem('analytics_consent');
+      if (consent !== null) return;
+      var badge = document.getElementById('consent-badge');
+      badge.style.display = 'flex';
+      document.getElementById('consent-accept').addEventListener('click', function () {
+        localStorage.setItem('analytics_consent', 'true');
+        badge.style.transition = 'opacity 0.4s, transform 0.4s';
+        badge.style.opacity = '0';
+        badge.style.transform = 'translateX(-50%) translateY(10px)';
+        setTimeout(function () { badge.style.display = 'none'; }, 400);
+      });
+      document.getElementById('consent-decline').addEventListener('click', function () {
+        localStorage.setItem('analytics_consent', 'false');
+        badge.style.transition = 'opacity 0.4s, transform 0.4s';
+        badge.style.opacity = '0';
+        badge.style.transform = 'translateX(-50%) translateY(10px)';
+        setTimeout(function () { badge.style.display = 'none'; }, 400);
+      });
+    })();
+  </script>
+  -->
+
 </body>
 
 </html>
