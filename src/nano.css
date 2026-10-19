@@ -1,0 +1,727 @@
+:root {
+  --bg: #000000;
+  --fg: #ffffff;
+  --dim: #808080;
+  --accent: #56b6ff;
+}
+
+:root[data-theme='light'] {
+  --bg: #ffffff;
+  --fg: #000000;
+  --dim: #555555;
+  --accent: #0000aa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'DejaVu Sans Mono', 'Menlo', 'Consolas', ui-monospace, monospace;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+/* The whole editor is exactly one screen tall: the title bar and the shortcut
+   bar are pinned, and only the buffer in between scrolls. */
+.nano {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.nano-titlebar,
+.nano-prompt,
+.nano-shortcuts {
+  flex: none;
+}
+
+/* --- title bar (inverted, like nano) --- */
+.nano-titlebar {
+  background: var(--fg);
+  color: var(--bg);
+  padding: 0.15rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Inner rail: keeps the bars aligned with the centered content column. */
+.bar-inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.nano-titlebar .version {
+  position: absolute;
+  left: 2.5rem;
+}
+
+.nano-titlebar .file {
+  font-weight: 700;
+}
+
+.nano-titlebar .signature,
+.nano-titlebar .wall-clock {
+  position: absolute;
+  right: 2.5rem;
+}
+
+/* The clock replaces the signature on phones only. */
+.nano-titlebar .wall-clock {
+  display: none;
+}
+
+/* --- body --- */
+/* The buffer and its ASCII scrollbar share the centered content column. */
+.nano-view {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.nano-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.2rem 0 2rem;
+  scrollbar-width: none; /* the real one is replaced by ScrollBar.jsx */
+}
+
+.nano-body::-webkit-scrollbar {
+  display: none;
+}
+
+/* One solid cell per visible row, inverted like the title bar. */
+.nano-scroll {
+  flex: none;
+  width: 1ch;
+  margin-left: 1.5ch;
+  padding-top: 1.2rem;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.nano-scroll .cell {
+  background: var(--bg);
+}
+
+.nano-scroll .thumb {
+  background: var(--fg);
+}
+
+/* --- buffer lines --- */
+.line {
+  white-space: pre-wrap;
+  min-height: 1.35em;
+}
+
+/* Spinner glyphs around a link to point it out (Sparkle.jsx). The link
+   between them takes the same gold, and inverts to gold on hover/focus. */
+.sparkled {
+  --gold: #e7be55;
+}
+
+.sparkle {
+  display: inline-block;
+  width: 1ch;
+  text-align: center;
+  color: var(--gold);
+}
+
+.sparkled .nano-link {
+  color: var(--gold);
+}
+
+.sparkled .nano-link:hover,
+.sparkled .nano-link:focus {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* Language buttons under the intro: the page's language lit in violet, the
+   other one dim until hovered. */
+.nano-link.lang-button {
+  color: var(--dim);
+  padding: 0 0.2ch;
+}
+
+.lang-short {
+  display: none;
+}
+
+.nano-link.lang-button.active {
+  background: #a78bfa;
+  color: #000000;
+}
+
+.nano-link.lang-button:hover,
+.nano-link.lang-button:focus {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* A line split in two: from its `pushFrom` link on, the pieces go to the
+   right edge. */
+.line.push-split {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.push-from {
+  margin-left: auto;
+  /* pre, not nowrap: stays on one line and keeps the spaces between the
+     buttons, which nowrap would squash into one. */
+  white-space: pre;
+}
+
+/* Pixel art (PixelArt.jsx): every pixel a 2ch x 2ch square. */
+.pixel-row {
+  height: 2ch;
+  line-height: 2ch;
+  white-space: pre;
+}
+
+.pixel-run {
+  display: inline-block;
+  height: 2ch;
+  vertical-align: top;
+}
+
+/* A drawing on a line of its own, centred (the tree over the menu). */
+.line.drawing {
+  display: flex;
+  justify-content: center;
+  padding: 0.4rem 0;
+}
+
+/* A line centred on the page rather than set from the left margin. */
+.line.centred {
+  text-align: center;
+}
+
+/* The activity grid on the menu (ACTIVITY in buffer.js): centred in the page,
+   ten square cells a row with air between them. The grid takes the width it
+   is given up to a limit, and the cells follow, so it needs no breakpoint of
+   its own. */
+.line.activity {
+  display: flex;
+  justify-content: center;
+  padding: 0.6rem 0;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: clamp(3px, 0.7vw, 9px);
+  width: min(100%, 26rem);
+}
+
+.activity-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+}
+
+/* --- panels (most played, page footer): logo left, text right --- */
+.line.panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  padding: 0.6rem 0;
+}
+
+/* A section body beside its icon: no extra padding and aligned to the top,
+   so the rows follow the section rule like any other section body even when
+   the icon is taller than them. */
+.line.panel.logo-right {
+  padding: 0;
+  align-items: flex-start;
+  /* Tighter than the default panel gap: the icon is pinned right anyway, and
+     the widest section (skills) needs the room to stay on one row. */
+  column-gap: 1rem;
+}
+
+/* Space between the tree and the intro text. */
+.line.panel-intro {
+  column-gap: 2rem;
+}
+
+.line.panel.logo-right .panel-logo {
+  order: 2;
+  /* Pushed against the right edge of the buffer, with a gap before it, so
+     the section icons line up in one column whatever their text is wide. */
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+/* Interests is a grid rather than a flex row: the globe in the right-hand
+   column, the quote under it in the same column (see `caption` in buffer.js). */
+.line.panel.panel-interests {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: start;
+  column-gap: 1rem;
+  row-gap: 0.4rem;
+}
+
+.line.panel.panel-interests .panel-text {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.line.panel.panel-interests .panel-under {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: center;
+  max-width: 24rem;
+  text-align: right;
+  opacity: 0.75;
+}
+
+.line.panel.panel-interests .panel-logo {
+  grid-column: 2;
+  grid-row: 1;
+  /* Centred in what is left of the row rather than pinned right: the globe
+     closes the page, so it gets as much room on its left as on its right. */
+  margin-right: auto;
+  /* Raised by two rows, so it starts level with the section heading rather
+     than with the first line of the list. */
+  margin-top: -2.5rem;
+}
+
+/* A grid, centred in the page: the tree, the intro text beside it, and the
+   contact lines under both, centred on their own. */
+.line.panel-intro {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.line.panel-intro .panel-logo {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.line.panel-intro .panel-text {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.line.panel-intro .panel-under {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  text-align: center;
+}
+
+.line.panel-intro .panel-text,
+.line.panel.logo-right .panel-text {
+  flex: 0 1 auto;
+}
+
+/* The role line is long: capped, it wraps and leaves room to centre. */
+.line.panel-intro .panel-text {
+  max-width: 58ch;
+}
+
+/* Small enough that the 45-row logo is about as tall as the text beside it. */
+.panel-logo {
+  flex: none;
+  font-size: 0.15em;
+  line-height: 1;
+  white-space: pre;
+}
+
+.panel-logo-row {
+  min-height: 1em;
+}
+
+.panel-text {
+  flex: 1 1 16rem;
+  min-width: 0;
+  white-space: pre-wrap;
+}
+
+/* ASCII art: same buffer lines, drawn small so a wide logo fits. The size
+   is set per line from its `art` value in buffer.js. */
+.line.art {
+  font-size: 0.3em;
+  line-height: 1;
+  min-height: 1em;
+}
+
+.line.cursor-line {
+  background: color-mix(in srgb, var(--fg) 14%, transparent);
+}
+
+.line.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  align-items: baseline;
+}
+
+.line.nav .path {
+  margin-right: auto;
+}
+
+/* "Not a dev?": bold, and set apart from the dev links by a dim bar. */
+.nano-link.standout {
+  position: relative;
+  font-weight: 700;
+  margin-left: 0.6rem;
+}
+
+.nano-link.standout::before {
+  content: '│';
+  position: absolute;
+  left: -1.2rem;
+  color: var(--dim);
+  font-weight: 400;
+  pointer-events: none;
+}
+
+mark {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.nano-link {
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--fg);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Programmatic focus must show, so :focus and not only :focus-visible. */
+.nano-link:hover,
+.nano-link:focus {
+  background: var(--fg);
+  color: var(--bg);
+  outline: none;
+}
+
+/* A gradient link inverts like any other on hover/focus: its letters take
+   the background colour, over the per-letter inline colours. */
+.nano-link:hover .gradient-text span,
+.nano-link:focus .gradient-text span {
+  color: var(--bg) !important;
+}
+
+.nano-body:focus {
+  outline: none;
+}
+
+.rule {
+  position: relative;
+  color: var(--dim);
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0.4rem 0 0.9rem;
+}
+
+/* Off-screen sample used to measure the width of one character. */
+.rule .ruler {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* --- prompt / status bar, sits above the shortcut bar like in nano --- */
+.nano-prompt {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 1.6em;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0.1rem 2.5rem;
+}
+
+.prompt-line {
+  display: flex;
+  align-items: baseline;
+  flex: 1;
+  min-width: 0;
+}
+
+.prompt-label {
+  background: var(--fg);
+  color: var(--bg);
+  padding: 0 0.2rem;
+  white-space: pre;
+}
+
+.prompt-line input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: var(--fg);
+  margin-left: 0.4rem;
+  caret-color: var(--fg);
+}
+
+/* Sits opposite the status message: it changes on its own, so it stays out
+   of the buffer where it would shift every line number. */
+.now-playing {
+  /* Takes whatever the status toast leaves, never its own content width:
+     otherwise the scrolling copy of the text would push the toast aside. */
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: right;
+  color: var(--dim);
+}
+
+/* --- scrolling line (Marquee.jsx) --- */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+}
+
+/* Each copy carries its own trailing gap, so -50% lands exactly on the
+   start of the second copy and the loop is seamless. The gap is a whole
+   number of letters (GAP in Marquee.jsx) so each step moves exactly one. */
+.marquee-track.moving .marquee-text {
+  padding-right: 4ch;
+}
+
+/* The timing function, steps(letters), is set inline by Marquee.jsx. */
+.marquee-track.moving {
+  animation-name: marquee;
+  animation-iteration-count: infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track.moving {
+    animation: none;
+  }
+}
+
+.status {
+  flex: none;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  background: var(--fg);
+  color: var(--bg);
+  display: inline-block;
+  padding: 0 0.6rem;
+}
+
+/* --- ^S: QR code in a black square, in the middle of the screen --- */
+.qr-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.qr-box {
+  background: #000000;
+  padding: 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+  max-width: calc(100vw - 2rem);
+}
+
+.qr-code {
+  display: inline-block;
+  line-height: 1;
+}
+
+.qr-box p {
+  margin: 0.4rem 0 0;
+}
+
+.qr-caption {
+  margin-top: 0.7rem !important;
+  color: #c4b5fd;
+}
+
+/* --- help screen --- */
+.help-list {
+  margin-top: 1rem;
+}
+
+.help-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.help-key {
+  width: 5rem;
+  flex: none;
+  font-weight: 700;
+}
+
+.help-key.wide {
+  width: 16ch;
+}
+
+.help-desc {
+  flex: 0 1 46ch;
+}
+
+.help-title {
+  margin-top: 1.6rem;
+  font-weight: 700;
+}
+
+.exited p {
+  margin: 0.2rem 0;
+}
+
+.dim {
+  color: var(--dim);
+}
+
+a {
+  color: var(--accent);
+}
+
+/* The key badge keeps nano's inverted look, and flips when the button
+   itself inverts on selection so it stays readable. */
+.key {
+  background: var(--fg);
+  color: var(--bg);
+  padding: 0 0.15rem;
+}
+
+.nano-link:hover .key,
+.nano-link:focus .key {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* --- shortcut bar: the same [ label ] buttons as the header --- */
+.nano-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0.5rem 2.5rem;
+  border-top: 1px solid var(--dim);
+}
+
+
+/* On a touch screen nobody drives the line cursor: no grey band on the line
+   it rests on. */
+@media (pointer: coarse) {
+  .line.cursor-line {
+    background: none;
+  }
+}
+
+@media (max-width: 700px) {
+  body {
+    font-size: 13px;
+  }
+  .nano-view,
+  .nano-prompt,
+  .nano-shortcuts,
+  .bar-inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .nano-titlebar .version {
+    left: 1rem;
+  }
+  /* Too narrow for drawing and text side by side: one column. */
+  .line.panel-intro {
+    grid-template-columns: auto;
+    justify-content: start;
+  }
+  .line.panel-intro .panel-logo,
+  .line.panel-intro .panel-text,
+  .line.panel-intro .panel-under {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  /* Contact lines left-aligned: centred, "[ copy ]" wrapped on its own. */
+  .line.panel-intro .panel-under {
+    text-align: left;
+  }
+  /* Section icons beside their text do not fit; under it they would only
+     take room. */
+  .line.panel.logo-right .panel-logo {
+    display: none;
+  }
+  /* Nav: the file name on its own row, the section links on the next, the
+     "Not a dev?" link on its own row, without the separator bar. */
+  .line.nav .path {
+    flex-basis: 100%;
+  }
+  .line.nav {
+    row-gap: 0.4rem;
+  }
+  .nano-link.standout {
+    margin-left: 0;
+  }
+  .nano-link.standout::before {
+    display: none;
+  }
+  /* Language buttons: codes (FR, EN...) instead of names, one short row. */
+  .lang-long {
+    display: none;
+  }
+  .lang-short {
+    display: inline;
+  }
+  /* On a phone the right corner shows the time instead of the signature. */
+  .nano-titlebar .signature {
+    display: none;
+  }
+  .nano-titlebar .wall-clock {
+    display: inline;
+    right: 1rem;
+  }
+  .nano-shortcuts {
+    gap: 0.8rem;
+  }
+}

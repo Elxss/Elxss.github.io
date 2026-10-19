@@ -1,0 +1,891 @@
+/* The document view, for people who do not want a terminal. After
+   jithinrp.com: white, black ink, full-width hairlines between bands, a lede
+   sentence and the name set huge in pixels, serif italic section titles.
+   None of its water or sound: the only motion is the marquee. */
+
+.sv {
+  --ink: #000;
+  --muted: rgb(0 0 0 / 0.6);
+  --line: #e2e2e2;
+  --tile: #f2f2f2;
+  --bg: #fff;
+
+  --max: 1340px;
+  --gutter: 50px;
+  --band: 100px;
+  --band-sm: 50px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --sans: Geist, 'IBM Plex Sans', system-ui, sans-serif;
+  --pixel: 'Geist Pixel', 'Geist Mono', monospace;
+  --serif: 'Instrument Serif', Newsreader, Georgia, serif;
+
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.sv h1,
+.sv h2,
+.sv h3,
+.sv p,
+.sv ul,
+.sv dl,
+.sv dd,
+.sv figure,
+.sv blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+.sv ul {
+  list-style: none;
+}
+
+.sv a,
+.sv button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Links draw their underline from the left on hover. */
+.sv-nav-links a,
+.sv-foot button,
+.sv-foot a,
+.sv-reco a {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.6s var(--ease);
+}
+
+.sv-nav-links a:hover,
+.sv-foot button:hover,
+.sv-foot a:hover,
+.sv-reco a:hover {
+  background-size: 100% 1px;
+}
+
+.sv :focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.sv-muted {
+  color: var(--muted);
+}
+
+.sv-wrap {
+  width: min(var(--max), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+/* A band: vertical rhythm, and a hairline across the whole window under it. */
+.sv-band {
+  padding-block: var(--band);
+  border-bottom: 1px solid var(--line);
+}
+
+#path,
+#skills,
+#projects,
+#contact {
+  scroll-margin-top: 5rem;
+}
+
+/* --- bar --- */
+.sv-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.sv-bar.is-scrolled {
+  background: rgb(255 255 255 / 0.86);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom-color: var(--line);
+}
+
+/* Links centred whatever sits on either side. */
+.sv-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-block: 1.5rem;
+}
+
+.sv-logo {
+  display: block;
+  width: max-content;
+}
+
+.sv-logo svg,
+.sv-globe-art {
+  display: block;
+  height: auto;
+}
+
+.sv-logo svg {
+  width: 40px;
+}
+
+.sv-nav-links {
+  display: flex;
+  gap: 2rem;
+  color: var(--muted);
+}
+
+.sv-nav-links a:hover {
+  color: var(--ink);
+}
+
+.sv-nav-start {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.sv-nav-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.25rem;
+}
+
+.sv-lang {
+  display: inline-flex;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.sv .sv-lang button[aria-pressed='true'] {
+  color: var(--ink);
+}
+
+/* The way back to the terminal: the one black thing in the bar, a prompt
+   and a blinking cursor around its words. */
+.sv .sv-term {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.sv .sv-term:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.18);
+}
+
+.sv-term-prompt {
+  font-family: var(--pixel);
+  opacity: 0.6;
+}
+
+.sv-term-cursor {
+  width: 0.5em;
+  height: 1em;
+  background: currentColor;
+}
+
+/* --- hero --- */
+.sv-hero {
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+}
+
+.sv-lede {
+  max-width: 34rem;
+  font-size: 32px;
+  line-height: 1.4;
+}
+
+/* Under the opening line: the plain facts, smaller and in grey, one a line. */
+.sv-lede-sub {
+  margin-top: 1.5rem !important;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.sv-lede-sub span {
+  display: block;
+}
+
+.sv-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem 3.25rem;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sv-meta li {
+  display: flex;
+  gap: 3.25rem;
+}
+
+.sv-hero .sv-meta {
+  margin-top: 6rem;
+}
+
+.sv-plus {
+  font-weight: 500;
+}
+
+.sv-name {
+  font-family: var(--pixel);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.sv-fit {
+  overflow: hidden;
+}
+
+.sv-fit span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* --- skills: columns parted by hairlines that run the band's height --- */
+.sv-band:has(.sv-pillars) {
+  padding-block: var(--band-sm);
+}
+
+.sv-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 2.5rem 52px;
+}
+
+.sv-pillar {
+  position: relative;
+}
+
+.sv-pillar + .sv-pillar::before {
+  content: '';
+  position: absolute;
+  left: -26px;
+  top: calc(-1 * var(--band-sm));
+  bottom: calc(-1 * var(--band-sm));
+  width: 1px;
+  background: var(--line);
+}
+
+.sv-pillar h2 {
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.sv-tools {
+  margin-top: 1rem !important;
+  font-size: 0.875rem;
+}
+
+/* --- marquee --- */
+.sv-marquee {
+  overflow: hidden;
+  padding-block: 2rem;
+  user-select: none;
+}
+
+.sv-marquee-track {
+  display: flex;
+  width: max-content;
+  font-family: var(--pixel);
+  font-size: clamp(56px, 9vw, 128px);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.sv-marquee-track > span {
+  display: flex;
+  align-items: center;
+  gap: 0.44em;
+  padding-right: 0.44em;
+}
+
+.sv-marquee .sv-plus {
+  font-size: 0.5em;
+}
+
+/* --- section titles --- */
+.sv-display {
+  margin-bottom: 3rem !important;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.2;
+}
+
+/* --- experience and education: three columns parted by hairlines --- */
+.sv-step {
+  --cg: clamp(40px, 9vw, 129px);
+  display: grid;
+  grid-template-columns: minmax(0, 323fr) minmax(0, 436fr) minmax(0, 323fr);
+  column-gap: var(--cg);
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.sv-step h3 {
+  margin-bottom: 0.5rem;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.sv-step-mid {
+  position: relative;
+}
+
+.sv-step-mid::before,
+.sv-step-mid::after {
+  content: '';
+  position: absolute;
+  top: -2.5rem;
+  bottom: -2.5rem;
+  width: 1px;
+  background: var(--line);
+}
+
+.sv-step-mid::before {
+  left: calc(var(--cg) / -2);
+}
+
+.sv-step-mid::after {
+  right: calc(var(--cg) / -2);
+}
+
+.sv-points li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.sv-points li + li {
+  margin-top: 0.5rem;
+}
+
+.sv-points li::before {
+  content: '+';
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+.sv-step-facts {
+  display: grid;
+  align-content: start;
+  gap: 1.5rem;
+}
+
+.sv-fact dt {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* A long fact (the stack) takes the whole row rather than a narrow column. */
+.sv-fact-wide {
+  grid-column: 1 / -1;
+}
+
+/* --- recommendation --- */
+.sv-reco .sv-lede {
+  max-width: 52rem;
+}
+
+.sv-reco .sv-meta {
+  justify-content: flex-start;
+  gap: 0.5rem 2rem;
+  margin-top: 2.5rem;
+}
+
+/* The quote on the left, the column icon in the room left on the right,
+   at a whole 4 screen pixels per icon pixel so it stays crisp. */
+.sv-reco-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 52px;
+}
+
+.sv-reco-art {
+  flex: none;
+  width: 108px;
+  height: auto;
+  margin-right: 4rem;
+}
+
+/* The same icon beside the title, for phones only. */
+.sv-reco-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sv-reco-head-art {
+  display: none;
+}
+
+/* --- cards: projects and competitions --- */
+.sv-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 3rem 2rem;
+}
+
+.sv-tile {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 1.25rem;
+  padding: 1.5rem;
+  background: var(--tile);
+  overflow: hidden;
+}
+
+.sv-tile span {
+  font-family: var(--pixel);
+  font-size: clamp(36px, 4.4vw, 64px);
+  line-height: 1;
+  text-align: center;
+}
+
+.sv-card h3 {
+  margin-bottom: 0.4rem;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.sv-card h3 .sv-muted {
+  font-weight: 400;
+}
+
+.sv-card-place {
+  margin-bottom: 0.25rem !important;
+  font-size: 0.875rem;
+}
+
+/* --- interests: title on the left, the rest beside it --- */
+.sv-about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 2rem 52px;
+}
+
+/* One interest after another, + between them as in the hero's meta line.
+   The rows come balanced from balancedRows and each is justified, as in
+   Word, so together they fill a rectangle. Each + is an item of its own, so
+   the free space falls evenly on both sides of it. JustifiedRows sets the
+   width: no gap grows past the box's column-gap, which a column of rows
+   has no other use for, nor shrinks below the rows'. */
+.sv-interests {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 100%;
+  row-gap: 1rem;
+  /* The widest gap: the hero meta line's. */
+  column-gap: 3.25rem;
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+.sv-interests ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  row-gap: inherit;
+  column-gap: 1rem;
+}
+
+.sv-interests li {
+  flex: none;
+  white-space: nowrap;
+}
+
+.sv-interests .sv-plus {
+  font-size: 0.6em;
+  color: var(--muted);
+}
+
+.sv-globe {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem !important;
+}
+
+.sv-globe-art {
+  flex: none;
+  width: 80px;
+}
+
+.sv-globe blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.sv-globe figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* --- contact: a row of joined hairline boxes, ink fills in on hover --- */
+.sv-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: start;
+  gap: 2rem 52px;
+}
+
+.sv-contact .sv-display {
+  margin-bottom: 0 !important;
+}
+
+.sv-joined {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--line);
+  width: max-content;
+  max-width: 100%;
+}
+
+.sv .sv-joined > * {
+  padding: 1rem 1.5rem;
+  border-left: 1px solid var(--line);
+  transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+.sv .sv-joined > :first-child {
+  border-left: 0;
+}
+
+.sv .sv-joined > :hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* --- footer --- */
+.sv-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 2rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.sv-foot button:hover,
+.sv-foot a:hover {
+  color: var(--ink);
+}
+
+.sv-foot-text p + p {
+  margin-top: 0.25rem !important;
+}
+
+.sv-foot a {
+  color: var(--ink);
+}
+
+/* The way to the terminal, larger than the lines beside it and centred on
+   them. */
+.sv-foot > button {
+  flex: none;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+/* --- medium screens --- */
+@media (max-width: 1024px) {
+  .sv {
+    --gutter: 32px;
+    --band: 80px;
+  }
+
+  .sv-nav-links {
+    display: none;
+  }
+
+  .sv-nav {
+    grid-template-columns: 1fr auto;
+  }
+
+  .sv-step {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    row-gap: 1.5rem;
+  }
+
+  .sv-step-mid::after {
+    display: none;
+  }
+
+  .sv-step-facts {
+    grid-column: 2;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  }
+
+  .sv-step-mid:empty {
+    display: none;
+  }
+
+  .sv-step-mid:empty + .sv-step-facts {
+    grid-row: 1;
+  }
+
+  /* Skills two by two. Only the right-hand column draws the hairline: with
+     auto-fit, the third pillar would draw its line in the left margin. */
+  .sv-pillars {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sv-pillar + .sv-pillar::before {
+    display: none;
+  }
+
+  .sv-pillar:nth-child(even)::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -26px;
+    top: calc(-1 * var(--band-sm));
+    bottom: calc(-1 * var(--band-sm));
+    width: 1px;
+    background: var(--line);
+  }
+
+  /* Title over the content: a third of the width is too narrow for the
+     interests and the contact boxes. */
+  .sv-about,
+  .sv-contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sv-about .sv-display,
+  .sv-contact .sv-display {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* --- phones: one column --- */
+@media (max-width: 680px) {
+  .sv {
+    --gutter: 20px;
+    --band: 64px;
+  }
+
+  .sv-hero {
+    padding-top: 2rem;
+  }
+
+  .sv-lede {
+    font-size: 24px;
+  }
+
+  /* The blurb's two halves on two lines, the second against the right edge. */
+  .sv-hero .sv-lede span {
+    display: block;
+  }
+
+  .sv-hero .sv-lede .sv-lede-end {
+    text-align: right;
+  }
+
+  .sv-lede-sub {
+    margin-top: 1rem !important;
+    font-size: 16px;
+  }
+
+  .sv-interests {
+    row-gap: 0.5rem;
+    column-gap: 1.25rem;
+    /* As large as the widest row allows, about 14.5em with its gaps. */
+    font-size: min(24px, calc((100vw - 2 * var(--gutter)) / 14.5));
+  }
+
+  .sv-interests ul {
+    column-gap: 0.5rem;
+  }
+
+  .sv-hero .sv-meta {
+    justify-content: center;
+    margin-top: 3rem;
+    /* Tight enough that the first two items share a line, the third centred
+       under them. */
+    gap: 0.4rem 0.6rem;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .sv-meta li {
+    gap: 0.6rem;
+  }
+
+  .sv-hero .sv-meta {
+    margin-bottom: 1rem;
+  }
+
+  .sv-display {
+    margin-bottom: 2rem !important;
+    font-size: 40px;
+  }
+
+  .sv-pillars {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sv-pillar:nth-child(even)::before {
+    display: none;
+  }
+
+  .sv-step {
+    grid-template-columns: 1fr;
+  }
+
+  .sv-step-mid::before {
+    display: none;
+  }
+
+  .sv-step-facts {
+    grid-column: auto;
+  }
+
+  .sv-step-mid:empty + .sv-step-facts {
+    grid-row: auto;
+  }
+
+  /* A full-width 4:3 tile is most of a phone screen: keep it a band. */
+  .sv-cards {
+    gap: 2.5rem;
+  }
+
+  .sv-tile {
+    aspect-ratio: 5 / 2;
+  }
+
+  /* Interests centred on the screen, and the globe with its proverb centred
+     as one block, the text inside it still aligned left. */
+  .sv-interests {
+    margin-inline: auto;
+  }
+
+  /* `.sv figure` resets margins: this needs to outrank it. */
+  .sv .sv-globe {
+    width: fit-content;
+    margin-inline: auto;
+    gap: 1rem;
+  }
+
+  /* The text takes the width left by the globe (64px) and the gap, less
+     0.75rem on each side: a small, even margin so the block reads centred. */
+  .sv-globe > div {
+    max-width: calc(100vw - 2 * var(--gutter) - 64px - 1rem - 1.5rem);
+  }
+
+  .sv-globe-art {
+    width: 64px;
+  }
+
+  .sv-globe blockquote {
+    font-size: 19px;
+  }
+
+  .sv-foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sv-foot > button {
+    font-size: 1.25rem;
+  }
+
+  /* No room left beside the quote: the icon goes on the title's line instead,
+     against the right edge, at 2 screen pixels per icon pixel. The title's
+     margin moves to the row so the two stay centred on each other. */
+  .sv-reco-art {
+    display: none;
+  }
+
+  .sv-reco-head {
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .sv-reco-head .sv-display {
+    margin-bottom: 0 !important;
+  }
+
+  .sv-reco-head-art {
+    display: block;
+    flex: none;
+    width: 54px;
+    height: auto;
+  }
+
+  .sv-joined {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .sv .sv-joined > * {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    text-align: left;
+  }
+
+  .sv .sv-joined > :first-child {
+    border-top: 0;
+  }
+}
+
+/* The marquee runs on its own, slowly; still for those who asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .sv-marquee-track {
+    animation: sv-marquee 40s linear infinite;
+  }
+}
+
+/* The cursor blinks whatever the motion setting: a blink, not a movement. */
+.sv-term-cursor {
+  animation: sv-blink 1.8s steps(1) infinite;
+}
+
+@keyframes sv-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes sv-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}

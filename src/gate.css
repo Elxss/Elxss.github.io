@@ -1,0 +1,150 @@
+/* The door. On paper like the standard view, but the terminal choice is a
+   little black screen typing its own command: the one to pick. */
+
+.gate {
+  --paper: #f7f7fa;
+  --ink: #17161f;
+  --muted: #5f6070;
+  --rule: #e2e1ea;
+  --accent: #5b3fd6;
+  --screen: #000000;
+  --screen-ink: #e8e8ea;
+  --prompt: #22c55e;
+
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  padding: 3rem 1.5rem;
+}
+
+.gate-inner {
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.gate-who {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.gate h1 {
+  font-family: Newsreader, Georgia, serif;
+  font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0.4rem 0 2.25rem;
+  max-width: 24ch;
+}
+
+/* The terminal choice gets the larger share of the row. */
+.gate-choices {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1rem;
+}
+
+.gate-choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  text-align: left;
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.25rem 1.35rem;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.gate-choice:hover,
+.gate-choice:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.gate-title {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.gate-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* --- the terminal choice: a small black screen --- */
+.gate-choice-unix {
+  background: var(--screen);
+  border-color: var(--screen);
+  color: var(--screen-ink);
+}
+
+.gate-choice-unix .gate-title {
+  color: #ffffff;
+}
+
+.gate-choice-unix .gate-desc {
+  color: #a1a1aa;
+}
+
+.gate-choice-unix:hover,
+.gate-choice-unix:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.gate-screen {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-family: 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.gate-prompt {
+  color: var(--prompt);
+}
+
+.gate-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  margin-left: 0.1em;
+  vertical-align: text-bottom;
+  background: var(--screen-ink);
+  animation: gate-blink 1s steps(1) infinite;
+}
+
+@keyframes gate-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gate-cursor {
+    animation: none;
+  }
+}
+
+.gate-note {
+  margin: 1.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .gate-choices {
+    grid-template-columns: 1fr;
+  }
+}
