@@ -29,6 +29,10 @@ body {
   font-family: 'DejaVu Sans Mono', 'Menlo', 'Consolas', ui-monospace, monospace;
   font-size: 15px;
   line-height: 1.35;
+  /* No font boosting on phones: it enlarges the tiny glyphs of the drawings
+     past the boxes they are measured for. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* The whole editor is exactly one screen tall: the title bar and the shortcut
@@ -207,6 +211,8 @@ body {
   display: inline-block;
   height: 2ch;
   vertical-align: top;
+  /* The width is set inline (PixelArt.jsx); a wider fallback glyph is cut. */
+  overflow: hidden;
 }
 
 /* A drawing on a line of its own, centred (the tree over the menu). */
@@ -683,9 +689,19 @@ a {
     grid-column: 1;
     grid-row: auto;
   }
-  /* Contact lines left-aligned: centred, "[ copy ]" wrapped on its own. */
+  /* Contact lines left-aligned, each kept on one row: the font shrinks until
+     the longest one (--cols characters, set in App.jsx) fits the screen, so
+     "[ copy ]" stays beside the address. A monospace character is about
+     0.6em wide; 3.5rem is the buffer's padding and its scroll bar. */
   .line.panel-intro .panel-under {
     text-align: left;
+    white-space: nowrap;
+    font-size: min(1em, calc((100vw - 3.5rem) / (var(--cols, 48) * 0.61)));
+  }
+  /* The resume link last, centred, after an empty row. */
+  .line.panel-intro .panel-under > :last-child {
+    margin-top: 1.35em;
+    text-align: center;
   }
   /* Section icons beside their text do not fit; under it they would only
      take room. */

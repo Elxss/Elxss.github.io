@@ -6,6 +6,7 @@ export const UI = {
   en: {
     nav: { projects: 'projects', competitions: 'competitions', interests: 'interests' },
     notDev: 'Not a dev? Standard View',
+    footerStandard: 'Check out the standard view',
     contact: 'Contact me at',
     copy: 'copy',
     here: 'here',
@@ -68,6 +69,7 @@ export const UI = {
   fr: {
     nav: { projects: 'projets', competitions: 'compétitions', interests: 'intérêts' },
     notDev: 'Non Tech ? Vue standard',
+    footerStandard: 'Découvrir la vue standard',
     contact: 'Contactez-moi via',
     copy: 'copier',
     here: 'ici',

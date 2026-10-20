@@ -118,7 +118,9 @@ function useOnScreen(ref, watch) {
  * A pixel is two monospace cells wide (2ch) and as tall as it is wide, so
  * it is square with any font; drawing it as two '██' glyphs at a line height
  * of 1 made every pixel about 20% wider than tall, and the art looked
- * squashed. The blocks stay in the text, so copying the page still gives the
+ * squashed. Each run is also given its width, 2ch a pixel: phones have no
+ * '█' in their monospace font and borrow one of another width from a
+ * fallback font, which squashed the rows again. The blocks stay in the text, so copying the page still gives the
  * drawing; the colour comes from the background, not the glyphs.
  * With `shimmer`, each colour group runs an animated gradient (SHIMMER);
  * give it a corner ('bottom-right'...) to change where the gradient starts.
@@ -140,12 +142,16 @@ export default function PixelArt({ rows, shimmer: animated = false }) {
               <span
                 key={k}
                 className="pixel-run"
-                style={{ color: run.color, background: run.background ?? run.color }}
+                style={{
+                  width: `${2 * run.n}ch`,
+                  color: run.color,
+                  background: run.background ?? run.color,
+                }}
               >
                 {(run.glyph ?? '██').repeat(run.n)}
               </span>
             ) : (
-              <span key={k} className="pixel-run">
+              <span key={k} className="pixel-run" style={{ width: `${2 * run.n}ch` }}>
                 {'  '.repeat(run.n)}
               </span>
             ),

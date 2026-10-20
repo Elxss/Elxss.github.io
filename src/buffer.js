@@ -351,6 +351,7 @@ const text = () => ['', ...sectionsFor('nano', S).flatMap(sectionLines)]
 const footerText = (file) => [
   `${nameLine()}  {{${P.footer}}}(#000000>#000000)`,
   `GitHub [ ${T.here} ](${LINKS.github})  ${T.mail} [ ${T.copy} ](action:copy-email)`,
+  `[ ${T.footerStandard} ](action:view:standard)`,
   T.built(new Date().getFullYear(), P.alias),
   T.endOf(file),
 ]

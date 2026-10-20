@@ -905,7 +905,11 @@ export default function App() {
           ))}
         </div>
         {line.under?.length > 0 && (
-          <div className="panel-under">
+          // --cols: the longest row, for its font size on phones (nano.css).
+          <div
+            className="panel-under"
+            style={{ '--cols': Math.max(...line.under.map((row) => row.text.length)) }}
+          >
             {line.under.map((row, r) => (
               <div key={r}>{renderText(row, i, false)}</div>
             ))}
@@ -973,7 +977,9 @@ export default function App() {
               ? () => openMenuEntry(name.slice('menu:'.length))
               : name.startsWith('toggle:')
                 ? () => toggleLines(name.slice('toggle:'.length))
-                : ACTIONS[name]
+                : name.startsWith('view:')
+                  ? () => setView(name.slice('view:'.length))
+                  : ACTIONS[name]
 
         const link =
           action ? (
