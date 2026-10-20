@@ -109,6 +109,9 @@ export const SECTIONS = [
         country: 'France',
         from: 'September 2026',
         to: 'NOW',
+        details: [
+          "Taking part in designing and building solutions for the school's staff and students",
+        ],
       },
       {
         title: 'Developer and DevOps Intern',

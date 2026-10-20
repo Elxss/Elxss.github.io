@@ -70,6 +70,9 @@ export const SECTIONS_FR = {
         title: 'Développeur Full Stack en alternance',
         from: 'Septembre 2026',
         to: "Actuellement",
+        details: [
+          "Participation à la conception et au développement de solutions à destination du personnel de l'établissement et des étudiants",
+        ],
       },
       {
         title: 'Stage développeur et DevOps',

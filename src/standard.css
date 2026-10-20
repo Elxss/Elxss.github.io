@@ -29,6 +29,7 @@
   --sans: Geist, 'IBM Plex Sans', system-ui, sans-serif;
   --display: 'Apple Garamond', 'Instrument Serif', Georgia, serif;
   --serif: 'Instrument Serif', Newsreader, Georgia, serif;
+  --mono: 'Geist Mono', ui-monospace, monospace;
 
   min-height: 100dvh;
   background: var(--bg);
@@ -186,26 +187,30 @@
 
 /* The way back to the terminal: the one black thing in the bar, a prompt
    and a blinking cursor around its words. */
+/* The way to the terminal view: square like the hairlines, set in mono,
+   filled in ink, and outlined on white on hover. */
 .sv .sv-term {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.75rem 1.25rem;
-  border-radius: 999px;
+  border: 1px solid var(--ink);
   background: var(--ink);
   color: var(--bg);
-  font-size: 0.875rem;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
   white-space: nowrap;
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  transition:
+    background-color 0.4s var(--ease),
+    color 0.4s var(--ease);
 }
 
 .sv .sv-term:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgb(0 0 0 / 0.18);
+  background: var(--bg);
+  color: var(--ink);
 }
 
 .sv-term-prompt {
-  font-family: var(--display);
   opacity: 0.6;
 }
 
