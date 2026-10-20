@@ -288,6 +288,37 @@ export default function StandardView({ lang = 'en', onLanguage, onExit }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // The bands under the hero fade in as they come into view, one after the
+  // other when several arrive at once. A data attribute rather than a class,
+  // so React's renders leave it alone; the fade itself is in standard.css.
+  // On desktop the skills sit right under the hero and are simply there.
+  const main = useRef(null)
+  useEffect(() => {
+    if (typeof IntersectionObserver !== 'function') return undefined
+    const skills = main.current.querySelector('#skills')
+    if (skills && !phone) skills.dataset.reveal = 'in'
+    const bands = [
+      ...main.current.querySelectorAll('.sv-band:not(.sv-hero):not(.sv-marquee)'),
+    ].filter((band) => band.dataset.reveal !== 'in')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .forEach((entry, i) => {
+            entry.target.style.setProperty('--reveal-delay', `${i * 150}ms`)
+            entry.target.dataset.reveal = 'in'
+            observer.unobserve(entry.target)
+          })
+      },
+      { rootMargin: '0px 0px -30% 0px' },
+    )
+    bands.forEach((band) => {
+      band.dataset.reveal = ''
+      observer.observe(band)
+    })
+    return () => observer.disconnect()
+  }, [lang, phone])
+
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(EMAIL)
@@ -351,7 +382,7 @@ export default function StandardView({ lang = 'en', onLanguage, onExit }) {
         </div>
       </header>
 
-      <main id="top">
+      <main id="top" ref={main}>
         <section className="sv-hero sv-band">
           <div className="sv-wrap">
             {/* Split at its comma: on phones the second half drops to its own
